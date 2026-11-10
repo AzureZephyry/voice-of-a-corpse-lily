@@ -1,0 +1,4 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/scene03_exterior_foundation.tscn" id="base"]
+[node name="Scene03ExteriorExploration" instance=ExtResource("base")]
+development_exploration = true

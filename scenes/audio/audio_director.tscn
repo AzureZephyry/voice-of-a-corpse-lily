@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/audio_director.gd" id="1"]
+
+[node name="AudioDirector" type="Node"]
+script = ExtResource("1")
+
+[node name="AmbienceA" type="AudioStreamPlayer" parent="."]
+bus = &"Ambience"
+volume_db = -80.0
+
+[node name="AmbienceB" type="AudioStreamPlayer" parent="."]
+bus = &"Ambience"
+volume_db = -80.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+volume_db = -80.0
+
+[node name="MusicB" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+volume_db = -80.0

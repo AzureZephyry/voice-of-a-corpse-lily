@@ -1,0 +1,82 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/hallway_normal_background.png" id="1_background"]
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/foreground/hallway_normal_fg_railing.png" id="2_railing"]
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/foreground/hallway_normal_fg_pillar_01.png" id="3_pillar"]
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/foreground/hallway_normal_fg_pillar_02.png" id="4_pillar"]
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/foreground/hallway_normal_fg_pillar_03.png" id="5_pillar"]
+
+[sub_resource type="RectangleShape2D" id="RearWallShape"]
+size = Vector2(3842, 350)
+
+[sub_resource type="RectangleShape2D" id="FrontBoundaryShape"]
+size = Vector2(3842, 64)
+
+[sub_resource type="RectangleShape2D" id="WestBoundaryShape"]
+size = Vector2(80, 960)
+
+[sub_resource type="RectangleShape2D" id="EastBoundaryShape"]
+size = Vector2(56, 960)
+
+[node name="HallwayNormal" type="Node2D"]
+texture_filter = 1
+editor_description = "Wayne's native 3842 x 960 canvas, top-left origin (0,0), scale 1. Separated Normal artwork only."
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+texture = ExtResource("1_background")
+centered = false
+
+[node name="Foreground" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Railing" type="Sprite2D" parent="Foreground"]
+z_index = 1
+position = Vector2(44, 817)
+texture = ExtResource("2_railing")
+centered = false
+
+[node name="Pillar01" type="Sprite2D" parent="Foreground"]
+z_index = 2
+position = Vector2(861, 516)
+texture = ExtResource("3_pillar")
+centered = false
+
+[node name="Pillar02" type="Sprite2D" parent="Foreground"]
+z_index = 2
+position = Vector2(2032, 516)
+texture = ExtResource("4_pillar")
+centered = false
+
+[node name="Pillar03" type="Sprite2D" parent="Foreground"]
+z_index = 2
+position = Vector2(3201, 516)
+texture = ExtResource("5_pillar")
+centered = false
+
+[node name="Geometry" type="Node2D" parent="."]
+editor_description = "Provisional perimeter: rear wall ends y350; front safety boundary y800 keeps Albert readable before the guardrail. Physical pillar bases are obscured beyond this floor band; no full-sprite colliders. Doors/stairs have no triggers."
+
+[node name="RearWall" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1921, 175)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/RearWall"]
+shape = SubResource("RearWallShape")
+
+[node name="FrontBoundary" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1921, 832)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/FrontBoundary"]
+shape = SubResource("FrontBoundaryShape")
+
+[node name="WestBoundary" type="StaticBody2D" parent="Geometry"]
+position = Vector2(40, 480)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WestBoundary"]
+shape = SubResource("WestBoundaryShape")
+
+[node name="EastBoundary" type="StaticBody2D" parent="Geometry"]
+position = Vector2(3814, 480)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/EastBoundary"]
+shape = SubResource("EastBoundaryShape")

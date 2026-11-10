@@ -1,0 +1,514 @@
+[gd_scene format=3 uid="uid://cah67qrc30ruq"]
+
+[ext_resource type="Script" uid="uid://b1bxln4x1byhf" path="res://scenes/prototypes/pixel_floor.gd" id="1_floor"]
+[ext_resource type="Script" uid="uid://bgdlid2qa4c26" path="res://scenes/prototypes/pixel_prop.gd" id="2_prop"]
+
+[ext_resource type="Script" path="res://scenes/prototypes/bedroom_prop.gd" id="3_bedroom"]
+[ext_resource type="Script" path="res://scripts/overworld_interactable.gd" id="4_interactable"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/scene02/planner_focus.svg" id="5_planner"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/scene02/student_id_focus.svg" id="6_id"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/scene02/graduation_medal_focus.svg" id="7_medal_focus"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/scene02/graduation_medal_prop.svg" id="8_medal_prop"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_marker.tscn" id="9_marker"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_1"]
+size = Vector2(512, 16)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_2"]
+size = Vector2(16, 352)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_3"]
+size = Vector2(16, 232)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_4"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_5"]
+size = Vector2(88, 136)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_6"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_7"]
+size = Vector2(136, 52)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_8"]
+size = Vector2(52, 84)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_9"]
+size = Vector2(48, 104)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_10"]
+size = Vector2(24, 32)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_11"]
+size = Vector2(24, 20)
+
+[sub_resource type="RectangleShape2D" id="DoorStopShape"]
+size = Vector2(16, 80)
+
+[sub_resource type="RectangleShape2D" id="ChairShape"]
+size = Vector2(32, 36)
+
+[sub_resource type="RectangleShape2D" id="DresserShape"]
+size = Vector2(112, 48)
+
+[sub_resource type="RectangleShape2D" id="BasketShape"]
+size = Vector2(32, 40)
+
+[sub_resource type="RectangleShape2D" id="BackpackShape"]
+size = Vector2(24, 32)
+
+[node name="Bedroom" type="Node2D" unique_id=794978626]
+texture_filter = 1
+
+[node name="Floors" type="Node2D" parent="."]
+
+
+[node name="Floor" type="Node2D" parent="Floors"]
+position = Vector2(0, 0)
+script = ExtResource("1_floor")
+pattern = "WarmWood"
+extent = Vector2i(512, 384)
+self_modulate = Color(0.86, 0.92, 0.94, 1)
+
+[node name="FloorDetails" type="Node2D" parent="."]
+
+
+[node name="WovenRug" type="Node2D" parent="FloorDetails"]
+position = Vector2(164, 184)
+script = ExtResource("3_bedroom")
+kind = "Rug"
+extent = Vector2(240, 128)
+
+[node name="Walls" type="Node2D" parent="." unique_id=973397408]
+
+
+[node name="WallPaneling" type="Node2D" parent="Walls"]
+position = Vector2(16, 0)
+script = ExtResource("3_bedroom")
+kind = "Wall"
+extent = Vector2(480, 40)
+
+[node name="North" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 0)
+
+[node name="Face" type="Polygon2D" parent="Walls/North"]
+position = Vector2(0, 0)
+polygon = PackedVector2Array(0, 0, 512, 0, 512, 16, 0, 16)
+color = Color(0.84706, 0.73333, 0.57255, 1)
+
+[node name="Cap" type="Polygon2D" parent="Walls/North"]
+position = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 508, 0, 508, 3, 0, 3)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="Skirting" type="Polygon2D" parent="Walls/North"]
+position = Vector2(0, 12)
+polygon = PackedVector2Array(0, 0, 512, 0, 512, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/North"]
+position = Vector2(256, 8)
+shape = SubResource("Rectangle_1")
+
+[node name="South" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 368)
+
+[node name="Face" type="Polygon2D" parent="Walls/South"]
+position = Vector2(0, 0)
+polygon = PackedVector2Array(0, 0, 512, 0, 512, 16, 0, 16)
+color = Color(0.84706, 0.73333, 0.57255, 1)
+
+[node name="Cap" type="Polygon2D" parent="Walls/South"]
+position = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 508, 0, 508, 3, 0, 3)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="Skirting" type="Polygon2D" parent="Walls/South"]
+position = Vector2(0, 12)
+polygon = PackedVector2Array(0, 0, 512, 0, 512, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/South"]
+position = Vector2(256, 8)
+shape = SubResource("Rectangle_1")
+
+[node name="West" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 16)
+
+[node name="Face" type="Polygon2D" parent="Walls/West"]
+position = Vector2(0, 0)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 352, 0, 352)
+color = Color(0.84706, 0.73333, 0.57255, 1)
+
+[node name="Cap" type="Polygon2D" parent="Walls/West"]
+position = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 12, 0, 12, 3, 0, 3)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="Skirting" type="Polygon2D" parent="Walls/West"]
+position = Vector2(0, 348)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/West"]
+position = Vector2(8, 176)
+shape = SubResource("Rectangle_2")
+
+[node name="SideSkirting" type="Polygon2D" parent="Walls/West"]
+position = Vector2(13, 0)
+polygon = PackedVector2Array(0, 0, 3, 0, 3, 352, 0, 352)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="SideHighlight" type="Polygon2D" parent="Walls/West"]
+position = Vector2(2, 0)
+polygon = PackedVector2Array(0, 0, 2, 0, 2, 352, 0, 352)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="EastUpper" type="StaticBody2D" parent="Walls"]
+position = Vector2(496, 16)
+
+[node name="Face" type="Polygon2D" parent="Walls/EastUpper"]
+position = Vector2(0, 0)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 232, 0, 232)
+color = Color(0.84706, 0.73333, 0.57255, 1)
+
+[node name="Cap" type="Polygon2D" parent="Walls/EastUpper"]
+position = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 12, 0, 12, 3, 0, 3)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="Skirting" type="Polygon2D" parent="Walls/EastUpper"]
+position = Vector2(0, 228)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EastUpper"]
+position = Vector2(8, 116)
+shape = SubResource("Rectangle_3")
+
+[node name="SideSkirting" type="Polygon2D" parent="Walls/EastUpper"]
+position = Vector2(13, 0)
+polygon = PackedVector2Array(0, 0, 3, 0, 3, 232, 0, 232)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="SideHighlight" type="Polygon2D" parent="Walls/EastUpper"]
+position = Vector2(2, 0)
+polygon = PackedVector2Array(0, 0, 2, 0, 2, 232, 0, 232)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="EastLower" type="StaticBody2D" parent="Walls"]
+position = Vector2(496, 328)
+
+[node name="Face" type="Polygon2D" parent="Walls/EastLower"]
+position = Vector2(0, 0)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 40, 0, 40)
+color = Color(0.84706, 0.73333, 0.57255, 1)
+
+[node name="Cap" type="Polygon2D" parent="Walls/EastLower"]
+position = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, 12, 0, 12, 3, 0, 3)
+color = Color(0.9451, 0.86667, 0.72941, 1)
+
+[node name="Skirting" type="Polygon2D" parent="Walls/EastLower"]
+position = Vector2(0, 36)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EastLower"]
+position = Vector2(8, 20)
+shape = SubResource("Rectangle_4")
+
+[node name="DoorStop" type="StaticBody2D" parent="Walls"]
+position = Vector2(496, 248)
+metadata/temporary_boundary = "Closed placeholder doorway prevents leaving the room until transitions are authorized."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/DoorStop"]
+position = Vector2(8, 40)
+shape = SubResource("DoorStopShape")
+
+[node name="Props" type="Node2D" parent="." unique_id=1530482264]
+
+
+[node name="Bed" type="StaticBody2D" parent="Props"]
+position = Vector2(24, 64)
+
+[node name="Visual" type="Node2D" parent="Props/Bed"]
+script = ExtResource("3_bedroom")
+kind = "Bed"
+extent = Vector2(88, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bed"]
+position = Vector2(44, 68)
+shape = SubResource("Rectangle_5")
+
+[node name="BedsideTable" type="StaticBody2D" parent="Props"]
+position = Vector2(148, 80)
+
+[node name="Visual" type="Node2D" parent="Props/BedsideTable"]
+script = ExtResource("2_prop")
+kind = "Nightstand"
+extent = Vector2(24, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/BedsideTable"]
+position = Vector2(12, 12)
+shape = SubResource("Rectangle_6")
+
+[node name="Desk" type="StaticBody2D" parent="Props"]
+position = Vector2(288, 56)
+
+[node name="Visual" type="Node2D" parent="Props/Desk"]
+script = ExtResource("3_bedroom")
+kind = "Desk"
+extent = Vector2(136, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Desk"]
+position = Vector2(68, 26)
+shape = SubResource("Rectangle_7")
+
+[node name="Chair" type="StaticBody2D" parent="Props"]
+position = Vector2(334, 126)
+
+[node name="Visual" type="Node2D" parent="Props/Chair"]
+script = ExtResource("3_bedroom")
+kind = "Chair"
+extent = Vector2(32, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Chair"]
+position = Vector2(16, 18)
+shape = SubResource("ChairShape")
+
+[node name="Bookshelf" type="StaticBody2D" parent="Props"]
+position = Vector2(232, 44)
+
+[node name="Visual" type="Node2D" parent="Props/Bookshelf"]
+script = ExtResource("2_prop")
+kind = "Bookshelf"
+extent = Vector2(52, 84)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf"]
+position = Vector2(26, 42)
+shape = SubResource("Rectangle_8")
+
+[node name="Cabinet" type="StaticBody2D" parent="Props"]
+position = Vector2(440, 40)
+
+[node name="Visual" type="Node2D" parent="Props/Cabinet"]
+script = ExtResource("2_prop")
+kind = "Wardrobe"
+extent = Vector2(48, 104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Cabinet"]
+position = Vector2(24, 52)
+shape = SubResource("Rectangle_9")
+
+[node name="Plant" type="StaticBody2D" parent="Props"]
+position = Vector2(432, 216)
+
+[node name="Visual" type="Node2D" parent="Props/Plant"]
+script = ExtResource("2_prop")
+kind = "Planter"
+extent = Vector2(24, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Plant"]
+position = Vector2(12, 16)
+shape = SubResource("Rectangle_10")
+
+[node name="BookCrate" type="StaticBody2D" parent="Props"]
+position = Vector2(232, 344)
+
+[node name="Visual" type="Node2D" parent="Props/BookCrate"]
+script = ExtResource("2_prop")
+kind = "BookStack"
+extent = Vector2(24, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/BookCrate"]
+position = Vector2(12, 10)
+shape = SubResource("Rectangle_11")
+
+[node name="Decoration" type="Node2D" parent="." unique_id=438142725]
+
+
+[node name="Window" type="Node2D" parent="Decoration"]
+position = Vector2(288, 4)
+script = ExtResource("3_bedroom")
+kind = "Window"
+extent = Vector2(136, 36)
+
+[node name="StudyPinboard" type="Node2D" parent="Decoration"]
+position = Vector2(204, 6)
+script = ExtResource("2_prop")
+kind = "Noticeboard"
+extent = Vector2(68, 28)
+
+[node name="Schedule" type="Node2D" parent="Decoration"]
+position = Vector2(432, 8)
+script = ExtResource("2_prop")
+kind = "Calendar"
+extent = Vector2(16, 22)
+
+[node name="Picture" type="Node2D" parent="Decoration"]
+position = Vector2(64, 6)
+script = ExtResource("2_prop")
+kind = "Picture"
+extent = Vector2(48, 32)
+
+[node name="DeskReferenceBooks" type="Node2D" parent="Decoration"]
+position = Vector2(232, 48)
+script = ExtResource("2_prop")
+kind = "BookStack"
+extent = Vector2(16, 20)
+
+[node name="Notebook" type="Polygon2D" parent="Decoration"]
+position = Vector2(392, 82)
+polygon = PackedVector2Array(0, 0, 12, 0, 12, 16, 0, 16)
+color = Color(0.89804, 0.83529, 0.6902, 1)
+
+[node name="NotebookBinding" type="Polygon2D" parent="Decoration"]
+position = Vector2(392, 82)
+polygon = PackedVector2Array(0, 0, 2, 0, 2, 16, 0, 16)
+color = Color(0.55686, 0.61176, 0.51765, 1)
+
+[node name="NotebookLine" type="Polygon2D" parent="Decoration"]
+position = Vector2(396, 88)
+polygon = PackedVector2Array(0, 0, 6, 0, 6, 1, 0, 1)
+color = Color(0.72549, 0.70588, 0.58039, 1)
+
+[node name="ShoesLeft" type="Polygon2D" parent="Decoration"]
+position = Vector2(432, 320)
+polygon = PackedVector2Array(0, 0, 9, 0, 9, 4, 0, 4)
+color = Color(0.47843, 0.36078, 0.28235, 1)
+
+[node name="ShoesRight" type="Polygon2D" parent="Decoration"]
+position = Vector2(444, 320)
+polygon = PackedVector2Array(0, 0, 9, 0, 9, 4, 0, 4)
+color = Color(0.47843, 0.36078, 0.28235, 1)
+
+[node name="DoorRightThreshold" type="Polygon2D" parent="Decoration"]
+position = Vector2(496, 248)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 80, 0, 80)
+color = Color(0.72549, 0.58039, 0.4, 1)
+
+[node name="DoorUpperFrame" type="Polygon2D" parent="Decoration"]
+position = Vector2(496, 244)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="DoorLowerFrame" type="Polygon2D" parent="Decoration"]
+position = Vector2(496, 328)
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 4, 0, 4)
+color = Color(0.53333, 0.37647, 0.26667, 1)
+
+[node name="DoorThresholdInset" type="Polygon2D" parent="Decoration"]
+position = Vector2(508, 248)
+polygon = PackedVector2Array(0, 0, 2, 0, 2, 80, 0, 80)
+color = Color(0.47451, 0.36471, 0.26667, 1)
+
+[node name="DoorRight" type="Marker2D" parent="." unique_id=500307979]
+position = Vector2(512, 288)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=197781062]
+position = Vector2(416, 288)
+
+
+[node name="Dresser" type="StaticBody2D" parent="Props"]
+position = Vector2(40, 320)
+
+[node name="Visual" type="Node2D" parent="Props/Dresser"]
+script = ExtResource("3_bedroom")
+kind = "Dresser"
+extent = Vector2(112, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Dresser"]
+position = Vector2(56, 24)
+shape = SubResource("DresserShape")
+
+[node name="LaundryBasket" type="StaticBody2D" parent="Props"]
+position = Vector2(176, 328)
+
+[node name="Visual" type="Node2D" parent="Props/LaundryBasket"]
+script = ExtResource("3_bedroom")
+kind = "Basket"
+extent = Vector2(32, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/LaundryBasket"]
+position = Vector2(16, 20)
+shape = SubResource("BasketShape")
+
+[node name="Backpack" type="StaticBody2D" parent="Props"]
+position = Vector2(176, 280)
+
+[node name="Visual" type="Node2D" parent="Props/Backpack"]
+script = ExtResource("3_bedroom")
+kind = "Backpack"
+extent = Vector2(24, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Backpack"]
+position = Vector2(12, 16)
+shape = SubResource("BackpackShape")
+
+[node name="Card" type="Node2D" parent="Props/Dresser"]
+position = Vector2(46, 4)
+script = ExtResource("3_bedroom")
+kind = "Card"
+extent = Vector2(20, 14)
+
+[node name="Interaction" type="Node2D" parent="Props/Dresser/Card"]
+position = Vector2(10, 7)
+script = ExtResource("4_interactable")
+radius = 76.0
+repeat_mode = 0
+lines = PackedStringArray("Albert James Dimapilis.", "Bachelor of Science in Computer Science.", "First year.", "Sounds official.")
+speakers = PackedStringArray("Albert", "Albert", "Albert", "Albert")
+focus_texture = ExtResource("6_id")
+visual_bounds = Rect2(0, 0, 20, 14)
+
+[node name="Interaction" type="Node2D" parent="Decoration/Notebook"]
+position = Vector2(6, 8)
+script = ExtResource("4_interactable")
+radius = 92.0
+lines = PackedStringArray("New semester. New schedule.", "Shouldn't be too different.")
+speakers = PackedStringArray("Albert", "Albert")
+focus_texture = ExtResource("5_planner")
+visual_bounds = Rect2(0, 0, 12, 16)
+
+[node name="ClosedDoorPanel" type="Polygon2D" parent="Decoration"]
+position = Vector2(498, 252)
+polygon = PackedVector2Array(0, 0, 12, 0, 12, 72, 0, 72)
+color = Color(0.48, 0.39, 0.30, 1)
+
+[node name="DoorHandle" type="Polygon2D" parent="Decoration/ClosedDoorPanel"]
+position = Vector2(2, 34)
+polygon = PackedVector2Array(0, 0, 3, 0, 3, 5, 0, 5)
+color = Color(0.82, 0.72, 0.49, 1)
+
+[node name="GraduationMedal" type="Node2D" parent="Decoration"]
+position = Vector2(176, 8)
+
+[node name="Visual" type="Sprite2D" parent="Decoration/GraduationMedal"]
+texture = ExtResource("8_medal_prop")
+centered = false
+
+[node name="Interaction" type="Node2D" parent="Decoration/GraduationMedal"]
+position = Vector2(10, 12)
+script = ExtResource("4_interactable")
+radius = 72.0
+lines = PackedStringArray("I could've left this at home.", "Whatever.")
+speakers = PackedStringArray("Albert", "Albert")
+focus_texture = ExtResource("7_medal_focus")
+visual_path = NodePath("../Visual")
+visual_bounds = Rect2(0, 0, 20, 24)
+
+[node name="ObjectiveMarker" parent="Decoration/Notebook" instance=ExtResource("9_marker")]
+position = Vector2(6, -6)
+
+[node name="ObjectiveMarker" parent="Props/Dresser/Card" instance=ExtResource("9_marker")]
+position = Vector2(10, -6)
+
+[node name="ObjectiveMarker" parent="Decoration/GraduationMedal" instance=ExtResource("9_marker")]
+position = Vector2(10, -4)
+
+[node name="ObjectiveMarker" parent="Decoration/ClosedDoorPanel" instance=ExtResource("9_marker")]
+position = Vector2(6, -6)
+

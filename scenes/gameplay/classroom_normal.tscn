@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/environments/classroom/classroom_normal_room.tscn" id="1_room"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="3_movement"]
+[ext_resource type="Script" path="res://scripts/classroom_foundation.gd" id="4_foundation"]
+[ext_resource type="PackedScene" path="res://scenes/environments/classroom/classroom_lighting.tscn" id="5_lighting"]
+[ext_resource type="PackedScene" path="res://scenes/environments/classroom/classroom_shadows.tscn" id="6_shadows"]
+[ext_resource type="Script" path="res://scripts/classroom_ceiling_shadows.gd" id="7_ceiling_shadows"]
+[ext_resource type="PackedScene" path="res://scenes/audio/footstep_audio.tscn" id="8_footsteps"]
+
+[sub_resource type="RectangleShape2D" id="ClassroomFeet"]
+size = Vector2(24, 14)
+
+[node name="ClassroomNormal" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("4_foundation")
+development_preview = false
+editor_description = "Milestone 1 foundation. Albert is held at Row 1 / Seat 2. Run classroom_normal_preview.tscn for movement. No screenplay or seated animation."
+
+[node name="Classroom" parent="." instance=ExtResource("1_room")]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(754, 628)
+script = ExtResource("3_movement")
+
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+scale = Vector2(5, 5)
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+position = Vector2(0, -7)
+shape = SubResource("ClassroomFeet")
+
+[node name="FixedCamera" type="Camera2D" parent="."]
+position = Vector2(640, 480)
+zoom = Vector2(1, 1)
+position_smoothing_enabled = false
+editor_description = "Native 1280 x 960 composition at 1:1. Deliberately independent of Player."
+
+[node name="ClassroomLighting" parent="." instance=ExtResource("5_lighting")]
+
+[node name="ClassroomShadows" parent="." instance=ExtResource("6_shadows")]
+
+[node name="CeilingShadowCache" type="Node" parent="."]
+script = ExtResource("7_ceiling_shadows")
+
+[node name="ActorShadow2D" parent="Player" index="2"]
+contact_size = Vector2(34,10)
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+
+[node name="FootstepAudio" parent="Player" instance=ExtResource("8_footsteps")]
+default_surface = "interior"

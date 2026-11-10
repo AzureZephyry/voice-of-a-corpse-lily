@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/footstep_audio.gd" id="1"]
+
+[node name="FootstepAudio" type="Node"]
+script = ExtResource("1")
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+bus = &"Footsteps"
+volume_db = -80.0

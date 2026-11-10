@@ -1,0 +1,147 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/scene03_exterior_foundation.gd" id="host"]
+[ext_resource type="PackedScene" path="res://scenes/environments/school_exterior/school_exterior_room.tscn" id="room"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="player"]
+[ext_resource type="Script" path="res://scripts/hallway_story_player.gd" id="control"]
+[ext_resource type="PackedScene" path="res://scenes/characters/mang_arnel.tscn" id="guard"]
+[ext_resource type="PackedScene" path="res://scenes/UI/time_hud.tscn" id="hud"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_panel.tscn" id="objective"]
+[ext_resource type="PackedScene" path="res://scenes/environments/school_exterior/school_notice_board.tscn" id="board"]
+[ext_resource type="Script" path="res://scripts/scene03_board_interaction.gd" id="interaction"]
+[ext_resource type="PackedScene" path="res://scenes/UI/overworld_overlay.tscn" id="overlay"]
+[ext_resource type="Script" path="res://scripts/audio/school_exterior_audio.gd" id="ambience"]
+[ext_resource type="PackedScene" path="res://scenes/audio/footstep_audio.tscn" id="footsteps"]
+[ext_resource type="Script" path="res://scripts/reality_presentation.gd" id="authority"]
+[ext_resource type="Script" path="res://scripts/scene03_exterior_presenter.gd" id="presenter"]
+[ext_resource type="PackedScene" path="res://scenes/components/reality_glitch.tscn" id="glitch"]
+[ext_resource type="Script" path="res://scripts/audio/reality_transition_audio.gd" id="sfx"]
+[ext_resource type="Texture2D" path="res://assets/environments/school_exterior/composite/school_notice_board_occlusion_mask.png" id="mask"]
+
+[sub_resource type="RectangleShape2D" id="feet"]
+size = Vector2(14,10)
+[sub_resource type="RectangleShape2D" id="progression"]
+size = Vector2(37,16)
+[sub_resource type="RectangleShape2D" id="road_bottom"]
+size = Vector2(1669,12)
+
+[node name="Scene03ExteriorFoundation" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("host")
+occlusion_mask = ExtResource("mask")
+editor_description = "Development foundation only. No Scene03 dialogue/Pair7/8 or road narrative. Use the separate exploration scene or Inspector option for development road access."
+
+[node name="SchoolExterior" parent="." instance=ExtResource("room")]
+
+[node name="Player" parent="." instance=ExtResource("player")]
+position = Vector2(655,1340)
+script = ExtResource("control")
+control_locked = false
+[node name="CollisionShape2D" parent="Player" index="1"]
+position = Vector2(0,-5)
+shape = SubResource("feet")
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2,2)
+limit_right = 1669
+limit_bottom = 1683
+limit_left = 0
+limit_top = 0
+[node name="FootstepAudio" parent="Player" instance=ExtResource("footsteps")]
+surface_provider = NodePath("../../ExteriorAudio")
+
+[node name="MangArnel" parent="." instance=ExtResource("guard")]
+position = Vector2(605.30625,1396.5074)
+
+[node name="SchoolNoticeBoard" parent="." instance=ExtResource("board")]
+position = Vector2(545,1204)
+
+[node name="ProgressionGate" type="StaticBody2D" parent="."]
+position = Vector2(568,1470)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProgressionGate"]
+shape = SubResource("progression")
+
+[node name="RoadEdge" type="StaticBody2D" parent="."]
+position = Vector2(834.5,1671)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadEdge"]
+shape = SubResource("road_bottom")
+
+[node name="PlanningAnchors" type="Node2D" parent="."]
+editor_description = "Inert placement proposals; no Area2D/story triggers or dialogue callbacks."
+
+[node name="RoadEntry" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(568,1540)
+
+[node name="TrafficFade" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(650,1590)
+
+[node name="VignetteOnset" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(760,1590)
+
+[node name="PlantReview" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(950,1590)
+
+[node name="PhoneMoment" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(1120,1590)
+
+[node name="UnknownVoice" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(1370,1590)
+
+[node name="CurrentPlayableEnd" type="Marker2D" parent="PlanningAnchors"]
+position = Vector2(1600,1590)
+
+[node name="BoardInteraction" type="Node2D" parent="."]
+script = ExtResource("interaction")
+[node name="DialogueLayer" parent="BoardInteraction" instance=ExtResource("overlay")]
+
+[node name="ExteriorAudio" type="Node" parent="."]
+script = ExtResource("ambience")
+
+[node name="TimeHUD" parent="." instance=ExtResource("hud")]
+layer = 12
+prefer_upper_right = true
+
+[node name="Objectives" type="CanvasLayer" parent="."]
+layer = 11
+[node name="Objective" parent="Objectives" instance=ExtResource("objective")]
+offset_right = 500.0
+
+[node name="FoundationUI" type="CanvasLayer" parent="."]
+layer = 10
+[node name="Prompt" type="Label" parent="FoundationUI"]
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+[node name="Diagnostic" type="Label" parent="FoundationUI"]
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 1000.0
+offset_bottom = 212.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+
+[node name="EnvironmentPresenter" type="Node" parent="."]
+script = ExtResource("presenter")
+[node name="RealityPresentation" type="Node" parent="."]
+script = ExtResource("authority")
+presenter_path = NodePath("../EnvironmentPresenter")
+transition_effect_path = NodePath("../RealityGlitch")
+[node name="RealityGlitch" parent="." instance=ExtResource("glitch")]
+protected_actor_path = NodePath("../Player/AnimatedSprite2D")
+protected_hud_path = NodePath("../TimeHUD/Screen/Frame")
+
+[node name="TransitionAudio" type="Node" parent="."]
+script = ExtResource("sfx")
+[node name="GlitchA" type="AudioStreamPlayer" parent="TransitionAudio"]
+bus = &"SFX"
+[node name="GlitchB" type="AudioStreamPlayer" parent="TransitionAudio"]
+bus = &"SFX"
+
+[connection signal="transition_started" from="RealityPresentation" to="TransitionAudio" method="_on_transition_started"]
+[editable path="Player"]

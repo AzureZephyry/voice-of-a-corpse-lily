@@ -1,0 +1,30 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scripts/classroom_lighting.gd" id="1"]
+[ext_resource type="Shader" path="res://shaders/classroom_daylight.gdshader" id="2"]
+[ext_resource type="Script" path="res://scripts/classroom_ceiling_light.gd" id="3"]
+[sub_resource type="ShaderMaterial" id="Daylight"]
+resource_local_to_scene = true
+shader = ExtResource("2")
+[node name="ClassroomLighting" type="CanvasLayer"]
+layer = 1
+script = ExtResource("1")
+[node name="WorldLight" type="ColorRect" parent="."]
+material = SubResource("Daylight")
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CeilingLight01" type="Node2D" parent="."]
+position = Vector2(148,21)
+script = ExtResource("3")
+[node name="CeilingLight02" type="Node2D" parent="."]
+position = Vector2(435,21)
+script = ExtResource("3")
+[node name="CeilingLight03" type="Node2D" parent="."]
+position = Vector2(844,21)
+script = ExtResource("3")
+[node name="CeilingLight04" type="Node2D" parent="."]
+position = Vector2(1132,21)
+script = ExtResource("3")

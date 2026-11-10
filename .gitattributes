@@ -1,0 +1,6 @@
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
+
+/art_source/environments/school_exterior/school_exterior_manifested.kra filter=lfs diff=lfs merge=lfs -text
+/art_source/environments/hallway/source_variants/hallway_manifested_pre_reference_cleanup.kra filter=lfs diff=lfs merge=lfs -text
+/art_source/environments/hallway/hallway_manifested.kra filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1aoc87u33jos"]
+
+[ext_resource type="SpriteFrames" path="res://assets/characters/albert/albert_frames.tres" id="1_frames"]
+[ext_resource type="Script" path="res://scripts/albert_animation.gd" id="2_animation"]
+[ext_resource type="PackedScene" path="res://scenes/components/actor_shadow_2d.tscn" id="3_shadow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg440"]
+size = Vector2(24, 40)
+
+[node name="Player" type="CharacterBody2D" groups=["controlled_actor"]]
+collision_mask = 3
+motion_mode = 1
+platform_floor_layers = 0
+platform_wall_layers = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_frames")
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -9)
+script = ExtResource("2_animation")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_qg440")
+
+[node name="ActorShadow2D" parent="." instance=ExtResource("3_shadow")]

@@ -1,0 +1,313 @@
+[gd_scene format=4 uid="uid://bmeml0eyrsw7k"]
+
+[ext_resource type="Script" uid="uid://c3wpgp2ck5u2c" path="res://scripts/classroom_psych_presentation.gd" id="controller"]
+[ext_resource type="FontFile" uid="uid://bw7pav7rmjw8v" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="font"]
+[ext_resource type="Script" uid="uid://cy44ddx2wuwgl" path="res://scripts/dialogue_fracture.gd" id="fracture"]
+[ext_resource type="Script" uid="uid://dq5s71wk4cl74" path="res://scripts/intrusive_echo_fragment.gd" id="fragment"]
+[ext_resource type="Shader" uid="uid://x6bjngljdp" path="res://shaders/intrusive_echo.gdshader" id="shader"]
+
+[sub_resource type="ShaderMaterial" id="Ink0"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="FontVariation" id="Distressed"]
+base_font = ExtResource("font")
+variation_embolden = 0.15
+spacing_top = -52
+spacing_bottom = -32
+
+[sub_resource type="FontVariation" id="Heavier"]
+base_font = ExtResource("font")
+variation_embolden = 0.8
+spacing_top = -52
+spacing_bottom = -32
+
+[sub_resource type="ShaderMaterial" id="Ink1"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink2"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink3"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink4"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink5"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink6"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink7"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink8"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink9"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink10"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="Ink11"]
+resource_local_to_scene = true
+shader = ExtResource("shader")
+shader_parameter/damage = 0.2
+shader_parameter/pattern_seed = 7.0
+shader_parameter/burst = 0.0
+shader_parameter/protected_count = 0
+shader_parameter/protected_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="PsychPresentation" type="CanvasLayer" unique_id=2035972368]
+layer = 6
+script = ExtResource("controller")
+
+[node name="Echoes" type="Node" parent="." unique_id=1134744713]
+
+[node name="Echo01" type="Control" parent="Echoes" unique_id=2061807297]
+material = SubResource("Ink0")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 135.0
+offset_right = 355.0
+offset_bottom = 280.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo02" type="Control" parent="Echoes" unique_id=1787580534]
+material = SubResource("Ink1")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 460.0
+offset_top = 150.0
+offset_right = 830.0
+offset_bottom = 290.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo03" type="Control" parent="Echoes" unique_id=584960106]
+material = SubResource("Ink2")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 690.0
+offset_top = 275.0
+offset_right = 1080.0
+offset_bottom = 420.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo04" type="Control" parent="Echoes" unique_id=1819029106]
+material = SubResource("Ink3")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 310.0
+offset_right = 365.0
+offset_bottom = 455.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo05" type="Control" parent="Echoes" unique_id=2060604549]
+material = SubResource("Ink4")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 390.0
+offset_top = 345.0
+offset_right = 750.0
+offset_bottom = 495.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo06" type="Control" parent="Echoes" unique_id=242712000]
+material = SubResource("Ink5")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 980.0
+offset_top = 180.0
+offset_right = 1270.0
+offset_bottom = 330.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo07" type="Control" parent="Echoes" unique_id=1325332601]
+material = SubResource("Ink6")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 495.0
+offset_right = 345.0
+offset_bottom = 645.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo08" type="Control" parent="Echoes" unique_id=454645684]
+material = SubResource("Ink7")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 825.0
+offset_top = 450.0
+offset_right = 1205.0
+offset_bottom = 600.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo09" type="Control" parent="Echoes" unique_id=787177422]
+material = SubResource("Ink8")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 245.0
+offset_top = 65.0
+offset_right = 625.0
+offset_bottom = 210.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo10" type="Control" parent="Echoes" unique_id=1530568310]
+material = SubResource("Ink9")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 950.0
+offset_top = 365.0
+offset_right = 1260.0
+offset_bottom = 515.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo11" type="Control" parent="Echoes" unique_id=1217347854]
+material = SubResource("Ink10")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 250.0
+offset_top = 515.0
+offset_right = 650.0
+offset_bottom = 665.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="Echo12" type="Control" parent="Echoes" unique_id=254712212]
+material = SubResource("Ink11")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 580.0
+offset_top = 540.0
+offset_right = 940.0
+offset_bottom = 690.0
+mouse_filter = 2
+script = ExtResource("fragment")
+font = SubResource("Distressed")
+heavier_font = SubResource("Heavier")
+
+[node name="FractureLayer" type="CanvasLayer" parent="." unique_id=1072694308]
+layer = 5
+
+[node name="Fracture" type="Control" parent="FractureLayer" unique_id=978753705]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+mouse_filter = 2
+script = ExtResource("fracture")

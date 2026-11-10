@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hallway_ambient_student.gd" id="actor"]
+[ext_resource type="Script" path="res://scripts/albert_animation.gd" id="animation"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_01_frames.tres" id="frames"]
+
+[ext_resource type="PackedScene" path="res://scenes/components/actor_shadow_2d.tscn" id="shadow"]
+
+[sub_resource type="RectangleShape2D" id="Feet"]
+size = Vector2(18, 12)
+
+[node name="AmbientStudent" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("actor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+offset = Vector2(0, -9)
+sprite_frames = ExtResource("frames")
+animation = &"idle_down_right"
+autoplay = "idle_down_right"
+script = ExtResource("animation")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("Feet")
+
+[node name="ActorShadow2D" parent="." instance=ExtResource("shadow")]
+contact_size = Vector2(30, 8)
+height_scale = 0.85
+ground_depth = 0.04
+cast_strength = 0.80

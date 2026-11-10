@@ -1,0 +1,108 @@
+{
+  "status": "Integrated in Scene 01; object anchors and depth limitations documented in README.md.",
+  "base": "res://assets/environments/classroom/classroom_manifested.png",
+  "base_SHA256": "fc8f2a06a18e3a7ffa7f034d82c2ffa2df43e9e3bce3ceb540de20e7a0d6dd6c",
+  "exports": [
+    {
+      "file": "classroom_manifested_fg_instructor_desk.png",
+      "source_layer": "Paint Layer 7",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "alpha_bounds_exclusive": [
+        954,
+        465,
+        1090,
+        784
+      ],
+      "occupied_pixels": 34597,
+      "source_alpha_values": [
+        0,
+        255
+      ],
+      "output_alpha_values": [
+        0,
+        255
+      ],
+      "RGB_equals_manifested_base_every_occupied_pixel": true,
+      "recomposing_over_base_is_pixel_identical": true,
+      "method": "Nonzero native layer alpha supplies binary coverage. Every covered pixel copies final manifested base RGBA; raw source layer RGB is never used.",
+      "suggested_object_ground_y": 783,
+      "placement_rule": "Top-left at (0,0), or a centered Sprite2D at (640,480). Per-object depth sorting is required; do not make all overlays permanently topmost.",
+      "source_layer_uuid": "f15881e0-d4c9-4bec-8cbc-2f6e3e60db18"
+    },
+    {
+      "file": "classroom_manifested_fg_instructor_chair.png",
+      "source_layer": "Paint Layer 13",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "alpha_bounds_exclusive": [
+        1107,
+        645,
+        1243,
+        714
+      ],
+      "occupied_pixels": 5141,
+      "source_alpha_values": [
+        0,
+        255
+      ],
+      "output_alpha_values": [
+        0,
+        255
+      ],
+      "RGB_equals_manifested_base_every_occupied_pixel": true,
+      "recomposing_over_base_is_pixel_identical": true,
+      "method": "Nonzero native layer alpha supplies binary coverage. Every covered pixel copies final manifested base RGBA; raw source layer RGB is never used.",
+      "suggested_object_ground_y": 713,
+      "placement_rule": "Top-left at (0,0), or a centered Sprite2D at (640,480). Per-object depth sorting is required; do not make all overlays permanently topmost.",
+      "source_layer_uuid": "5fedb571-98c9-42c8-a0bd-b985f609e9a6"
+    },
+    {
+      "file": "classroom_manifested_fg_wall_equipment.png",
+      "source_layer": "Paint Layer 6",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "alpha_bounds_exclusive": [
+        1207,
+        382,
+        1235,
+        679
+      ],
+      "occupied_pixels": 8241,
+      "source_alpha_values": [
+        0,
+        255
+      ],
+      "output_alpha_values": [
+        0,
+        255
+      ],
+      "RGB_equals_manifested_base_every_occupied_pixel": true,
+      "recomposing_over_base_is_pixel_identical": true,
+      "method": "Nonzero native layer alpha supplies binary coverage. Every covered pixel copies final manifested base RGBA; raw source layer RGB is never used.",
+      "suggested_object_ground_y": 678,
+      "placement_rule": "Top-left at (0,0), or a centered Sprite2D at (640,480). Per-object depth sorting is required; do not make all overlays permanently topmost.",
+      "source_layer_uuid": "2919ddbd-a1b6-4ce7-9d3f-2002fe0a4ecf"
+    }
+  ],
+  "project_destination": "res://assets/environments/classroom/foreground_manifested/",
+  "unresolved": "Layer 17 foreground/background tendril partitions, Layer 8 per-chair masks, and instructor-desk front/side partitions; see README.md."
+}

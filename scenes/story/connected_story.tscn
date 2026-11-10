@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://gaxiuoaanffu"]
+
+[ext_resource type="PackedScene" uid="uid://d8gohjtffqka" path="res://scenes/story/classroom_opening.tscn" id="first"]
+[ext_resource type="Script" uid="uid://da3ny34xi107n" path="res://scripts/connected_story.gd" id="host"]
+
+[node name="ConnectedStory" type="Node" unique_id=1774674222]
+script = ExtResource("host")
+
+[node name="Location" type="Node" parent="." unique_id=1032320843]
+
+[node name="ClassroomOpening" parent="Location" unique_id=841702129 instance=ExtResource("first")]
+
+[node name="Cover" type="CanvasLayer" parent="." unique_id=912301309]
+layer = 100
+
+[node name="Black" type="ColorRect" parent="Cover" unique_id=578337895]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

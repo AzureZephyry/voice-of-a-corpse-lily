@@ -1,0 +1,545 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://scenes/characters/npc_001.tscn" id="actor"]
+[ext_resource type="Script" path="res://scripts/npc_waypoint_roaming.gd" id="roam"]
+[ext_resource type="Script" path="res://scripts/scene03_ambient_students.gd" id="crowd"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_01_frames.tres" id="normal0"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_01_manifested_frames.tres" id="manifested0"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_male_01_frames.tres" id="normal1"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_male_01_manifested_frames.tres" id="manifested1"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_02_frames.tres" id="normal2"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_02_manifested_frames.tres" id="manifested2"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_male_02_frames.tres" id="normal3"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_male_02_manifested_frames.tres" id="manifested3"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_03_frames.tres" id="normal4"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_03_manifested_frames.tres" id="manifested4"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_01_frames.tres" id="normal5"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_01_manifested_frames.tres" id="manifested5"]
+[node name="AmbientStudents" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("crowd")
+manifested_frames = Array[SpriteFrames]([ExtResource("manifested0"), ExtResource("manifested1"), ExtResource("manifested2"), ExtResource("manifested3"), ExtResource("manifested4"), ExtResource("manifested5"), ExtResource("manifested0"), ExtResource("manifested1"), ExtResource("manifested2"), ExtResource("manifested3"), ExtResource("manifested4"), ExtResource("manifested5"), ExtResource("manifested0"), ExtResource("manifested1"), ExtResource("manifested2"), ExtResource("manifested3"), ExtResource("manifested4"), ExtResource("manifested5"), ExtResource("manifested0"), ExtResource("manifested1"), ExtResource("manifested2"), ExtResource("manifested3"), ExtResource("manifested4"), ExtResource("manifested5"), ExtResource("manifested0"), ExtResource("manifested1"), ExtResource("manifested2"), ExtResource("manifested3"), ExtResource("manifested4"), ExtResource("manifested5"), ExtResource("manifested0"), ExtResource("manifested1")])
+[node name="Routes" type="Node2D" parent="."]
+[node name="Route0" type="Node2D" parent="Routes"]
+[node name="Stop0" type="Marker2D" parent="Routes/Route0"]
+position = Vector2(670,1080)
+[node name="Stop1" type="Marker2D" parent="Routes/Route0"]
+position = Vector2(670,1290)
+[node name="Route1" type="Node2D" parent="Routes"]
+[node name="Stop0" type="Marker2D" parent="Routes/Route1"]
+position = Vector2(695,880)
+[node name="Stop1" type="Marker2D" parent="Routes/Route1"]
+position = Vector2(695,1130)
+[node name="Route2" type="Node2D" parent="Routes"]
+[node name="Stop0" type="Marker2D" parent="Routes/Route2"]
+position = Vector2(820,1260)
+[node name="Stop1" type="Marker2D" parent="Routes/Route2"]
+position = Vector2(1240,1260)
+[node name="Route3" type="Node2D" parent="Routes"]
+[node name="Stop0" type="Marker2D" parent="Routes/Route3"]
+position = Vector2(1090,1230)
+[node name="Stop1" type="Marker2D" parent="Routes/Route3"]
+position = Vector2(1490,1230)
+[node name="Student01" parent="." instance=ExtResource("actor")]
+position = Vector2(670,1160)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student01" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student01" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[node name="Roaming" type="Node" parent="Student01"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route0")
+pause_min_seconds = 1.0
+pause_max_seconds = 2.5
+[node name="Student02" parent="." instance=ExtResource("actor")]
+position = Vector2(695,960)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 45.0
+[node name="AnimatedSprite2D" parent="Student02" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student02" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[node name="Roaming" type="Node" parent="Student02"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route1")
+pause_min_seconds = 1.5
+pause_max_seconds = 3.0
+[node name="Student03" parent="." instance=ExtResource("actor")]
+position = Vector2(950,1260)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 48.0
+[node name="AnimatedSprite2D" parent="Student03" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal2")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student03" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[node name="Roaming" type="Node" parent="Student03"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route2")
+pause_min_seconds = 2.0
+pause_max_seconds = 3.5
+[node name="Student04" parent="." instance=ExtResource("actor")]
+position = Vector2(1380,1230)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 51.0
+[node name="AnimatedSprite2D" parent="Student04" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal3")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student04" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[node name="Roaming" type="Node" parent="Student04"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route3")
+pause_min_seconds = 2.5
+pause_max_seconds = 4.0
+[node name="Student05" parent="." instance=ExtResource("actor")]
+position = Vector2(780,1260)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 54.0
+[node name="AnimatedSprite2D" parent="Student05" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal4")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student05" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[node name="Student06" parent="." instance=ExtResource("actor")]
+position = Vector2(1460,1260)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 57.0
+[node name="AnimatedSprite2D" parent="Student06" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal5")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student06" index="2"]
+contact_size = Vector2(12,4)
+height_scale = 0.75
+[editable path="Student01"]
+[editable path="Student02"]
+[editable path="Student03"]
+[editable path="Student04"]
+[editable path="Student05"]
+[editable path="Student06"]
+
+[node name="Student07" parent="." instance=ExtResource("actor")]
+position = Vector2(680,500)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student07" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student07" index="2"]
+contact_size = Vector2(12,4)
+[node name="Route6" type="Node2D" parent="Routes"]
+[node name="A" type="Marker2D" parent="Routes/Route6"]
+position = Vector2(680,400)
+[node name="B" type="Marker2D" parent="Routes/Route6"]
+position = Vector2(680,600)
+[node name="Roaming" type="Node" parent="Student07"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route6")
+pause_min_seconds = 2.0
+pause_max_seconds = 5.0
+[editable path="Student07"]
+
+[node name="Student08" parent="." instance=ExtResource("actor")]
+position = Vector2(660,780)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student08" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student08" index="2"]
+contact_size = Vector2(12,4)
+[node name="Route7" type="Node2D" parent="Routes"]
+[node name="A" type="Marker2D" parent="Routes/Route7"]
+position = Vector2(660,680)
+[node name="B" type="Marker2D" parent="Routes/Route7"]
+position = Vector2(660,880)
+[node name="Roaming" type="Node" parent="Student08"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route7")
+pause_min_seconds = 2.0
+pause_max_seconds = 5.0
+[editable path="Student08"]
+
+[node name="Student09" parent="." instance=ExtResource("actor")]
+position = Vector2(830,1245)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student09" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal2")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student09" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student09"]
+
+[node name="Student10" parent="." instance=ExtResource("actor")]
+position = Vector2(1000,1245)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student10" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal3")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student10" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student10"]
+
+[node name="Student11" parent="." instance=ExtResource("actor")]
+position = Vector2(1280,1260)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student11" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal4")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student11" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student11"]
+
+[node name="Student12" parent="." instance=ExtResource("actor")]
+position = Vector2(1540,1260)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student12" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal5")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student12" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student12"]
+
+[node name="Student13" parent="." instance=ExtResource("actor")]
+position = Vector2(200,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student13" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student13" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student13"]
+
+[node name="Student14" parent="." instance=ExtResource("actor")]
+position = Vector2(260,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student14" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student14" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student14"]
+
+[node name="Student15" parent="." instance=ExtResource("actor")]
+position = Vector2(380,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student15" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal2")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student15" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student15"]
+
+[node name="Student16" parent="." instance=ExtResource("actor")]
+position = Vector2(900,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student16" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal3")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student16" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student16"]
+
+[node name="Student17" parent="." instance=ExtResource("actor")]
+position = Vector2(1200,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student17" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal4")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student17" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student17"]
+
+[node name="Student18" parent="." instance=ExtResource("actor")]
+position = Vector2(1480,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student18" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal5")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student18" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student18"]
+
+[node name="Student19" parent="." instance=ExtResource("actor")]
+position = Vector2(170,850)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student19" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student19" index="2"]
+contact_size = Vector2(12,4)
+[node name="Route18" type="Node2D" parent="Routes"]
+[node name="A" type="Marker2D" parent="Routes/Route18"]
+position = Vector2(170,850)
+[node name="B" type="Marker2D" parent="Routes/Route18"]
+position = Vector2(330,850)
+[node name="Roaming" type="Node" parent="Student19"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route18")
+[editable path="Student19"]
+
+[node name="Student20" parent="." instance=ExtResource("actor")]
+position = Vector2(280,850)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student20" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student20" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student20"]
+
+[node name="Student21" parent="." instance=ExtResource("actor")]
+position = Vector2(420,850)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student21" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal2")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student21" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student21"]
+
+[node name="Student22" parent="." instance=ExtResource("actor")]
+position = Vector2(550,850)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student22" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal3")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student22" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student22"]
+
+[node name="Student23" parent="." instance=ExtResource("actor")]
+position = Vector2(180,400)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student23" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal4")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student23" index="2"]
+contact_size = Vector2(12,4)
+[node name="Route22" type="Node2D" parent="Routes"]
+[node name="A" type="Marker2D" parent="Routes/Route22"]
+position = Vector2(180,400)
+[node name="B" type="Marker2D" parent="Routes/Route22"]
+position = Vector2(340,400)
+[node name="Roaming" type="Node" parent="Student23"]
+script = ExtResource("roam")
+route_path = NodePath("../../Routes/Route22")
+[editable path="Student23"]
+
+[node name="Student24" parent="." instance=ExtResource("actor")]
+position = Vector2(320,400)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student24" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal5")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student24" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student24"]
+
+[node name="Student25" parent="." instance=ExtResource("actor")]
+position = Vector2(450,400)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student25" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student25" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student25"]
+
+[node name="Student26" parent="." instance=ExtResource("actor")]
+position = Vector2(700,1370)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student26" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student26" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student26"]
+
+[node name="Student27" parent="." instance=ExtResource("actor")]
+position = Vector2(680,300)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student27" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal2")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student27" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student27"]
+
+[node name="Student28" parent="." instance=ExtResource("actor")]
+position = Vector2(650,1000)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student28" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal3")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student28" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student28"]
+
+[node name="Student29" parent="." instance=ExtResource("actor")]
+position = Vector2(120,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student29" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal4")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student29" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student29"]
+
+[node name="Student30" parent="." instance=ExtResource("actor")]
+position = Vector2(330,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student30" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal5")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student30" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student30"]
+
+[node name="Student31" parent="." instance=ExtResource("actor")]
+position = Vector2(1100,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student31" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal0")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student31" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student31"]
+
+[node name="Student32" parent="." instance=ExtResource("actor")]
+position = Vector2(1580,1495)
+collision_layer = 2
+collision_mask = 1
+movement_speed = 42.0
+[node name="AnimatedSprite2D" parent="Student32" index="0"]
+offset = Vector2(0,-9)
+sprite_frames = ExtResource("normal1")
+animation = &"idle_down"
+autoplay = "idle_down"
+[node name="ActorShadow2D" parent="Student32" index="2"]
+contact_size = Vector2(12,4)
+[editable path="Student32"]

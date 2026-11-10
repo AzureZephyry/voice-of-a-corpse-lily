@@ -1,0 +1,20 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://scenes/story/scene03_story.tscn" id="world"]
+[ext_resource type="Script" path="res://scripts/scene02_exterior.gd" id="host"]
+[ext_resource type="Script" path="res://scripts/scene02_exterior_narrative.gd" id="story02"]
+[ext_resource type="PackedScene" path="res://scenes/UI/scene02_objectives.tscn" id="objectives"]
+[node name="Scene02Exterior" instance=ExtResource("world")]
+script = ExtResource("host")
+scene02_phase = true
+[node name="Player" parent="."]
+position = Vector2(114.75,640)
+[node name="Scene02Narrative" type="Node" parent="."]
+script = ExtResource("story02")
+autostart = true
+panel_path = NodePath("../StoryLayer/DialoguePanel")
+player_path = NodePath("../Player")
+[node name="GameplayUI" parent="." instance=ExtResource("objectives")]
+location_kind = 1
+narrative_path = NodePath("../Scene02Narrative")
+[connection signal="stage_direction" from="Scene02Narrative" to="ExteriorAudio" method="_on_walkway_cue"]
+[connection signal="exterior_segment_completed" from="Scene02Narrative" to="." method="_on_segment_finished"]

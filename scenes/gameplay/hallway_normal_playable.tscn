@@ -1,0 +1,106 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/environments/hallway/hallway_normal_room.tscn" id="1_room"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="3_movement"]
+[ext_resource type="Script" path="res://scripts/hallway_normal_playable.gd" id="4_host"]
+[ext_resource type="PackedScene" path="res://scenes/audio/footstep_audio.tscn" id="5_footsteps"]
+[ext_resource type="PackedScene" path="res://scenes/UI/time_hud.tscn" id="6_clock_hud"]
+[ext_resource type="Script" path="res://scripts/hallway_foreground_visibility.gd" id="7_visibility"]
+[ext_resource type="Script" path="res://scripts/reality_presentation.gd" id="8_reality"]
+[ext_resource type="Script" path="res://scripts/hallway_reality_presenter.gd" id="9_presenter"]
+[ext_resource type="PackedScene" path="res://scenes/components/reality_glitch.tscn" id="10_glitch"]
+[ext_resource type="Script" path="res://scripts/hallway_reality_debug.gd" id="11_debug"]
+[ext_resource type="Script" path="res://scripts/audio/reality_transition_audio.gd" id="12_audio"]
+[ext_resource type="Script" path="res://scripts/hallway_railing_visibility.gd" id="13_rail"]
+[ext_resource type="Shader" path="res://shaders/hallway_railing_visibility.gdshader" id="14_rail_shader"]
+
+[sub_resource type="ShaderMaterial" id="RailingVisibility"]
+resource_local_to_scene = true
+shader = ExtResource("14_rail_shader")
+
+[sub_resource type="RectangleShape2D" id="HallwayFeet"]
+size = Vector2(24, 14)
+
+[node name="HallwayNormalPlayable" type="Node2D"]
+texture_filter = 1
+y_sort_enabled = true
+process_physics_priority = 20
+script = ExtResource("4_host")
+editor_description = "Standalone Hallway test (F6). Debug R switches reality; M toggles reduced motion. Spawn (480,610) is development-only. No story entrance or exit."
+
+[node name="Hallway" parent="." instance=ExtResource("1_room")]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(480, 610)
+script = ExtResource("3_movement")
+
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+scale = Vector2(5, 5)
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+position = Vector2(0, -7)
+shape = SubResource("HallwayFeet")
+
+[node name="FootstepAudio" parent="Player" instance=ExtResource("5_footsteps")]
+default_surface = "interior"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 480)
+limit_left = 0
+limit_top = 0
+limit_right = 3842
+limit_bottom = 960
+position_smoothing_enabled = false
+editor_description = "Horizontal follow after Player physics. Fixed y480; whole-pixel position; 1x zoom."
+
+[node name="TimeHUD" parent="." instance=ExtResource("6_clock_hud")]
+prefer_upper_right = true
+
+[node name="ForegroundVisibility" type="Node" parent="."]
+script = ExtResource("7_visibility")
+actor_sprite_path = NodePath("../Player/AnimatedSprite2D")
+foreground_paths = Array[NodePath]([NodePath("../Hallway/Foreground/Pillar01"), NodePath("../Hallway/Foreground/Pillar02"), NodePath("../Hallway/Foreground/Pillar03")])
+
+[node name="HallwayRealityPresenter" type="Node" parent="."]
+script = ExtResource("9_presenter")
+visual_paths = Array[NodePath]([NodePath("../Hallway/Background"), NodePath("../Hallway/Foreground/Pillar01"), NodePath("../Hallway/Foreground/Pillar02"), NodePath("../Hallway/Foreground/Pillar03"), NodePath("../Hallway/Foreground/Railing")])
+visibility_path = NodePath("../ForegroundVisibility")
+railing_visibility_path = NodePath("../RailingVisibility")
+
+[node name="RailingVisibility" type="Node" parent="."]
+script = ExtResource("13_rail")
+actor_path = NodePath("../Player/AnimatedSprite2D")
+railing_path = NodePath("../Hallway/Foreground/Railing")
+overlap_material = SubResource("RailingVisibility")
+
+[node name="RealityGlitch" parent="." instance=ExtResource("10_glitch")]
+protected_actor_path = NodePath("../Player/AnimatedSprite2D")
+protected_hud_path = NodePath("../TimeHUD/Screen/Frame")
+
+[node name="RealityPresentation" type="Node" parent="."]
+script = ExtResource("8_reality")
+presenter_path = NodePath("../HallwayRealityPresenter")
+transition_effect_path = NodePath("../RealityGlitch")
+
+[node name="RealityDebug" type="Node" parent="."]
+script = ExtResource("11_debug")
+reality_path = NodePath("../RealityPresentation")
+effect_path = NodePath("../RealityGlitch")
+
+[node name="TransitionAudio" type="Node" parent="."]
+script = ExtResource("12_audio")
+
+[node name="GlitchA" type="AudioStreamPlayer" parent="TransitionAudio"]
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="GlitchB" type="AudioStreamPlayer" parent="TransitionAudio"]
+volume_db = -80.0
+bus = &"SFX"
+
+[connection signal="transition_started" from="RealityPresentation" to="TransitionAudio" method="_on_transition_started"]
+
+[editable path="Player"]

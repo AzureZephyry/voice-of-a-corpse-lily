@@ -1,0 +1,59 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/classroom_manifested.png" id="base"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground_manifested/classroom_manifested_fg_instructor_desk.png" id="fg0"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground_manifested/classroom_manifested_fg_instructor_chair.png" id="fg1"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground_manifested/classroom_manifested_fg_wall_equipment.png" id="fg2"]
+[ext_resource type="PackedScene" path="res://scenes/components/actor_shadow_2d.tscn" id="shadow"]
+
+[node name="Manifested" type="Node2D"]
+visible = false
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Artwork" type="Sprite2D" parent="."]
+z_index = -10
+centered = false
+texture = ExtResource("base")
+
+[node name="InstructorDesk" type="Node2D" parent="."]
+position = Vector2(0, 783)
+editor_description = "Authored silhouette, measured ground row 783. Side/top depth partitions still require artist masks."
+
+[node name="Artwork" type="Sprite2D" parent="InstructorDesk"]
+position = Vector2(0, -783)
+centered = false
+texture = ExtResource("fg0")
+
+[node name="ActorShadow2D" parent="InstructorDesk" instance=ExtResource("shadow")]
+visual_source_path = NodePath("../Artwork")
+feet_offset = Vector2(1031.5, 0)
+cast_strength = 0.0
+contact_strength = 0.55
+contact_size = Vector2(118, 10)
+
+[node name="InstructorChair" type="Node2D" parent="."]
+position = Vector2(0, 713)
+editor_description = "Authored chair silhouette at measured ground row 713; same Y-sort as actors."
+
+[node name="Artwork" type="Sprite2D" parent="InstructorChair"]
+position = Vector2(0, -713)
+centered = false
+texture = ExtResource("fg1")
+
+[node name="ActorShadow2D" parent="InstructorChair" instance=ExtResource("shadow")]
+visual_source_path = NodePath("../Artwork")
+feet_offset = Vector2(1175, 0)
+cast_strength = 0.0
+contact_strength = 0.5
+contact_size = Vector2(136, 8)
+
+[node name="WallEquipment" type="Node2D" parent="."]
+position = Vector2(0, 678)
+z_index = -5
+editor_description = "Mounted right-wall equipment is background to actors beside the wall; painted bottom is not a floor-depth anchor. No invented floor shadow."
+
+[node name="Artwork" type="Sprite2D" parent="WallEquipment"]
+position = Vector2(0, -678)
+centered = false
+texture = ExtResource("fg2")

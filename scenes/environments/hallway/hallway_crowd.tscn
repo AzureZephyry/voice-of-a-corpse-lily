@@ -1,0 +1,543 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/hallway_ambient_student.tscn" id="student"]
+[ext_resource type="Script" path="res://scripts/hallway_crowd.gd" id="crowd"]
+[ext_resource type="Shader" path="res://shaders/hallway_time_grade.gdshader" id="grade"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_01_frames.tres" id="classmate_female_01"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_male_02_frames.tres" id="classmate_male_02"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_03_frames.tres" id="classmate_female_03"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_male_01_frames.tres" id="classmate_male_01"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/classmate_female_02_frames.tres" id="classmate_female_02"]
+
+[sub_resource type="ShaderMaterial" id="CrowdGrade"]
+resource_local_to_scene = true
+shader = ExtResource("grade")
+shader_parameter/time_weight = 0.850
+shader_parameter/cover_depth = 0.08
+
+[node name="Crowd" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+process_physics_priority = 10
+script = ExtResource("crowd")
+actor_material = SubResource("CrowdGrade")
+editor_description = "33 anonymous students, using five approved paired SpriteFrames. Authored lanes/waits; no dialogue, respawn or hostile behavior."
+
+[node name="Student01" parent="." instance=ExtResource("student")]
+position = Vector2(190, 430)
+movement_speed = 47.0
+route_left = 180.0
+route_right = 1480.0
+initial_direction = 1.0
+initial_wait = 1.7
+wait_seconds = 1.9
+schedule_seed = 17
+
+[node name="AnimatedSprite2D" parent="Student01" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student02" parent="." instance=ExtResource("student")]
+position = Vector2(620, 438)
+movement_speed = 40.0
+route_left = 160.0
+route_right = 1400.0
+initial_direction = -1.0
+initial_wait = 3.8
+wait_seconds = 2.6
+schedule_seed = 34
+
+[node name="AnimatedSprite2D" parent="Student02" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student03" parent="." instance=ExtResource("student")]
+position = Vector2(950, 620)
+movement_speed = 53.0
+route_left = 180.0
+route_right = 1590.0
+initial_direction = 1.0
+initial_wait = 0.4
+wait_seconds = 3.3
+schedule_seed = 51
+
+[node name="AnimatedSprite2D" parent="Student03" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student04" parent="." instance=ExtResource("student")]
+position = Vector2(355, 692)
+movement_speed = 45.0
+route_left = 130.0
+route_right = 1310.0
+initial_direction = -1.0
+initial_wait = 5.2
+wait_seconds = 4.0
+schedule_seed = 68
+
+[node name="AnimatedSprite2D" parent="Student04" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student05" parent="." instance=ExtResource("student")]
+position = Vector2(1070, 752)
+movement_speed = 58.0
+route_left = 330.0
+route_right = 1690.0
+initial_direction = 1.0
+initial_wait = 0.0
+wait_seconds = 4.7
+schedule_seed = 85
+
+[node name="AnimatedSprite2D" parent="Student05" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student06" parent="." instance=ExtResource("student")]
+position = Vector2(1260, 675)
+movement_speed = 49.0
+route_left = 350.0
+route_right = 2120.0
+initial_direction = -1.0
+initial_wait = 1.7
+wait_seconds = 5.4
+schedule_seed = 102
+
+[node name="AnimatedSprite2D" parent="Student06" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student07" parent="." instance=ExtResource("student")]
+position = Vector2(810, 585)
+movement_speed = 42.0
+route_left = 530.0
+route_right = 1750.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 1.2
+schedule_seed = 119
+
+[node name="AnimatedSprite2D" parent="Student07" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student08" parent="." instance=ExtResource("student")]
+position = Vector2(470, 405)
+movement_speed = 42.0
+route_left = 470.0
+route_right = 470.0
+initial_direction = 1.0
+initial_wait = 0.4
+wait_seconds = 1.9
+schedule_seed = 136
+idle_only = true
+idle_facing = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" parent="Student08" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student09" parent="." instance=ExtResource("student")]
+position = Vector2(720, 505)
+movement_speed = 42.0
+route_left = 720.0
+route_right = 720.0
+initial_direction = 1.0
+initial_wait = 5.2
+wait_seconds = 2.6
+schedule_seed = 153
+idle_only = true
+idle_facing = Vector2(1, 1)
+
+[node name="AnimatedSprite2D" parent="Student09" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student10" parent="." instance=ExtResource("student")]
+position = Vector2(1210, 425)
+movement_speed = 42.0
+route_left = 1210.0
+route_right = 1210.0
+initial_direction = 1.0
+initial_wait = 0.0
+wait_seconds = 3.3
+schedule_seed = 170
+idle_only = true
+idle_facing = Vector2(-1, 0)
+
+[node name="AnimatedSprite2D" parent="Student10" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student11" parent="." instance=ExtResource("student")]
+position = Vector2(280, 760)
+movement_speed = 42.0
+route_left = 280.0
+route_right = 280.0
+initial_direction = 1.0
+initial_wait = 1.7
+wait_seconds = 4.0
+schedule_seed = 187
+idle_only = true
+idle_facing = Vector2(1, -1)
+
+[node name="AnimatedSprite2D" parent="Student11" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student12" parent="." instance=ExtResource("student")]
+position = Vector2(1440, 415)
+movement_speed = 46.0
+route_left = 1010.0
+route_right = 2690.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 4.7
+schedule_seed = 204
+
+[node name="AnimatedSprite2D" parent="Student12" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student13" parent="." instance=ExtResource("student")]
+position = Vector2(1860, 450)
+movement_speed = 55.0
+route_left = 1330.0
+route_right = 2820.0
+initial_direction = -1.0
+initial_wait = 0.4
+wait_seconds = 5.4
+schedule_seed = 221
+
+[node name="AnimatedSprite2D" parent="Student13" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student14" parent="." instance=ExtResource("student")]
+position = Vector2(2350, 625)
+movement_speed = 60.0
+route_left = 1090.0
+route_right = 2670.0
+initial_direction = -1.0
+initial_wait = 5.2
+wait_seconds = 1.2
+schedule_seed = 238
+
+[node name="AnimatedSprite2D" parent="Student14" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student15" parent="." instance=ExtResource("student")]
+position = Vector2(1640, 695)
+movement_speed = 43.0
+route_left = 1220.0
+route_right = 2730.0
+initial_direction = 1.0
+initial_wait = 0.0
+wait_seconds = 1.9
+schedule_seed = 255
+
+[node name="AnimatedSprite2D" parent="Student15" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student16" parent="." instance=ExtResource("student")]
+position = Vector2(2080, 748)
+movement_speed = 52.0
+route_left = 1530.0
+route_right = 3120.0
+initial_direction = -1.0
+initial_wait = 1.7
+wait_seconds = 2.6
+schedule_seed = 272
+
+[node name="AnimatedSprite2D" parent="Student16" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student17" parent="." instance=ExtResource("student")]
+position = Vector2(2530, 580)
+movement_speed = 39.0
+route_left = 1400.0
+route_right = 2960.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 3.3
+schedule_seed = 289
+
+[node name="AnimatedSprite2D" parent="Student17" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student18" parent="." instance=ExtResource("student")]
+position = Vector2(1750, 765)
+movement_speed = 64.0
+route_left = 950.0
+route_right = 2490.0
+initial_direction = 1.0
+initial_wait = 0.4
+wait_seconds = 4.0
+schedule_seed = 306
+
+[node name="AnimatedSprite2D" parent="Student18" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student19" parent="." instance=ExtResource("student")]
+position = Vector2(1380, 490)
+movement_speed = 42.0
+route_left = 1380.0
+route_right = 1380.0
+initial_direction = 1.0
+initial_wait = 5.2
+wait_seconds = 4.7
+schedule_seed = 323
+idle_only = true
+idle_facing = Vector2(1, -1)
+
+[node name="AnimatedSprite2D" parent="Student19" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student20" parent="." instance=ExtResource("student")]
+position = Vector2(1840, 400)
+movement_speed = 42.0
+route_left = 1840.0
+route_right = 1840.0
+initial_direction = 1.0
+initial_wait = 0.0
+wait_seconds = 5.4
+schedule_seed = 340
+idle_only = true
+idle_facing = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" parent="Student20" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student21" parent="." instance=ExtResource("student")]
+position = Vector2(2400, 420)
+movement_speed = 42.0
+route_left = 2400.0
+route_right = 2400.0
+initial_direction = 1.0
+initial_wait = 1.7
+wait_seconds = 1.2
+schedule_seed = 357
+idle_only = true
+idle_facing = Vector2(1, 1)
+
+[node name="AnimatedSprite2D" parent="Student21" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student22" parent="." instance=ExtResource("student")]
+position = Vector2(2240, 690)
+movement_speed = 42.0
+route_left = 2240.0
+route_right = 2240.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 1.9
+schedule_seed = 374
+idle_only = true
+idle_facing = Vector2(-1, 0)
+
+[node name="AnimatedSprite2D" parent="Student22" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student23" parent="." instance=ExtResource("student")]
+position = Vector2(2650, 430)
+movement_speed = 45.0
+route_left = 2270.0
+route_right = 3740.0
+initial_direction = 1.0
+initial_wait = 0.4
+wait_seconds = 2.6
+schedule_seed = 391
+
+[node name="AnimatedSprite2D" parent="Student23" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student24" parent="." instance=ExtResource("student")]
+position = Vector2(3100, 410)
+movement_speed = 57.0
+route_left = 2450.0
+route_right = 3690.0
+initial_direction = -1.0
+initial_wait = 5.2
+wait_seconds = 3.3
+schedule_seed = 408
+
+[node name="AnimatedSprite2D" parent="Student24" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student25" parent="." instance=ExtResource("student")]
+position = Vector2(3700, 645)
+movement_speed = 48.0
+route_left = 2390.0
+route_right = 3730.0
+initial_direction = -1.0
+initial_wait = 0.0
+wait_seconds = 4.0
+schedule_seed = 425
+
+[node name="AnimatedSprite2D" parent="Student25" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[node name="Student26" parent="." instance=ExtResource("student")]
+position = Vector2(3300, 700)
+movement_speed = 54.0
+route_left = 2680.0
+route_right = 3740.0
+initial_direction = 1.0
+initial_wait = 1.7
+wait_seconds = 4.7
+schedule_seed = 442
+
+[node name="AnimatedSprite2D" parent="Student26" index="0"]
+sprite_frames = ExtResource("classmate_female_03")
+
+[node name="Student27" parent="." instance=ExtResource("student")]
+position = Vector2(2950, 760)
+movement_speed = 41.0
+route_left = 2030.0
+route_right = 3730.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 5.4
+schedule_seed = 459
+
+[node name="AnimatedSprite2D" parent="Student27" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student28" parent="." instance=ExtResource("student")]
+position = Vector2(3450, 765)
+movement_speed = 62.0
+route_left = 2540.0
+route_right = 3690.0
+initial_direction = -1.0
+initial_wait = 0.4
+wait_seconds = 1.2
+schedule_seed = 476
+
+[node name="AnimatedSprite2D" parent="Student28" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student29" parent="." instance=ExtResource("student")]
+position = Vector2(2800, 600)
+movement_speed = 50.0
+route_left = 1700.0
+route_right = 3740.0
+initial_direction = 1.0
+initial_wait = 5.2
+wait_seconds = 1.9
+schedule_seed = 493
+
+[node name="AnimatedSprite2D" parent="Student29" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student30" parent="." instance=ExtResource("student")]
+position = Vector2(2725, 410)
+movement_speed = 42.0
+route_left = 2725.0
+route_right = 2725.0
+initial_direction = 1.0
+initial_wait = 0.0
+wait_seconds = 2.6
+schedule_seed = 510
+idle_only = true
+idle_facing = Vector2(-1, 0)
+
+[node name="AnimatedSprite2D" parent="Student30" index="0"]
+sprite_frames = ExtResource("classmate_female_01")
+
+[node name="Student31" parent="." instance=ExtResource("student")]
+position = Vector2(3010, 485)
+movement_speed = 42.0
+route_left = 3010.0
+route_right = 3010.0
+initial_direction = 1.0
+initial_wait = 1.7
+wait_seconds = 3.3
+schedule_seed = 527
+idle_only = true
+idle_facing = Vector2(1, -1)
+
+[node name="AnimatedSprite2D" parent="Student31" index="0"]
+sprite_frames = ExtResource("classmate_male_01")
+
+[node name="Student32" parent="." instance=ExtResource("student")]
+position = Vector2(3750, 405)
+movement_speed = 42.0
+route_left = 3750.0
+route_right = 3750.0
+initial_direction = 1.0
+initial_wait = 3.8
+wait_seconds = 4.0
+schedule_seed = 544
+idle_only = true
+idle_facing = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" parent="Student32" index="0"]
+sprite_frames = ExtResource("classmate_male_02")
+
+[node name="Student33" parent="." instance=ExtResource("student")]
+position = Vector2(3100, 695)
+movement_speed = 42.0
+route_left = 3100.0
+route_right = 3100.0
+initial_direction = 1.0
+initial_wait = 0.4
+wait_seconds = 4.7
+schedule_seed = 561
+idle_only = true
+idle_facing = Vector2(1, 1)
+
+[node name="AnimatedSprite2D" parent="Student33" index="0"]
+sprite_frames = ExtResource("classmate_female_02")
+
+[editable path="Student01"]
+
+[editable path="Student02"]
+
+[editable path="Student03"]
+
+[editable path="Student04"]
+
+[editable path="Student05"]
+
+[editable path="Student06"]
+
+[editable path="Student07"]
+
+[editable path="Student08"]
+
+[editable path="Student09"]
+
+[editable path="Student10"]
+
+[editable path="Student11"]
+
+[editable path="Student12"]
+
+[editable path="Student13"]
+
+[editable path="Student14"]
+
+[editable path="Student15"]
+
+[editable path="Student16"]
+
+[editable path="Student17"]
+
+[editable path="Student18"]
+
+[editable path="Student19"]
+
+[editable path="Student20"]
+
+[editable path="Student21"]
+
+[editable path="Student22"]
+
+[editable path="Student23"]
+
+[editable path="Student24"]
+
+[editable path="Student25"]
+
+[editable path="Student26"]
+
+[editable path="Student27"]
+
+[editable path="Student28"]
+
+[editable path="Student29"]
+
+[editable path="Student30"]
+
+[editable path="Student31"]
+
+[editable path="Student32"]
+
+[editable path="Student33"]

@@ -1,0 +1,337 @@
+[gd_scene format=3 uid="uid://d8gohjtffqka"]
+
+[ext_resource type="PackedScene" path="res://scenes/gameplay/classroom_normal.tscn" id="1_foundation"]
+[ext_resource type="PackedScene" uid="uid://dpyt04ru3m6ad" path="res://scenes/UI/dialogue_panel.tscn" id="2_dialogue"]
+[ext_resource type="Script" uid="uid://dndr0kvvsfayy" path="res://scripts/classroom_opening.gd" id="3_opening"]
+[ext_resource type="Script" uid="uid://dcd2lnjayxoup" path="res://scripts/classroom_quiz.gd" id="4_quiz"]
+[ext_resource type="Shader" uid="uid://b6orfqkpkdudq" path="res://shaders/dialogue_intrusion.gdshader" id="5_intrusion"]
+[ext_resource type="Script" uid="uid://dggwbvlccxrds" path="res://scripts/classroom_dismissal.gd" id="6_dismissal"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_panel.tscn" id="7_objective"]
+[ext_resource type="Script" uid="uid://b07vyjmekqidq" path="res://scripts/overworld_interactable.gd" id="9_target"]
+[ext_resource type="FontFile" uid="uid://bw7pav7rmjw8v" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="10_font"]
+[ext_resource type="Script" uid="uid://b0vnbtbgwob8a" path="res://scripts/classroom_professor_conversation.gd" id="11_conversation"]
+[ext_resource type="Script" uid="uid://bhpwwxdi6v1vw" path="res://scripts/audio/classroom_audio.gd" id="12_audio"]
+[ext_resource type="PackedScene" path="res://scenes/UI/time_hud.tscn" id="14_timehud"]
+[ext_resource type="Script" uid="uid://sp6rda6rm0pi" path="res://scripts/classroom_time.gd" id="15_time"]
+[ext_resource type="PackedScene" path="res://scenes/components/actor_shadow_2d.tscn" id="16_shadow"]
+[ext_resource type="PackedScene" path="res://scenes/environments/classroom/classroom_manifested.tscn" id="17_manifested"]
+[ext_resource type="Script" uid="uid://cd5kxa0akcn5d" path="res://scripts/reality_presentation.gd" id="18_reality"]
+[ext_resource type="Script" uid="uid://gac4dgwi1s01" path="res://scripts/classroom_reality_presenter.gd" id="19_presenter"]
+[ext_resource type="PackedScene" path="res://scenes/components/reality_glitch.tscn" id="20_glitch"]
+[ext_resource type="PackedScene" uid="uid://bmeml0eyrsw7k" path="res://scenes/components/classroom_psych_presentation.tscn" id="28_8wlm1"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_marker.tscn" id="exit_marker"]
+[ext_resource type="Script" uid="uid://wf1gpkpn5sdg" path="res://scripts/classroom_exit.gd" id="exit_script"]
+[ext_resource type="SpriteFrames" uid="uid://cj5rp4eh4aw08" path="res://assets/characters/classroom/normal/classmate_female_01_frames.tres" id="frames_classmate_female_01"]
+[ext_resource type="SpriteFrames" uid="uid://hn7gvhuludbu" path="res://assets/characters/classroom/normal/classmate_female_02_frames.tres" id="frames_classmate_female_02"]
+[ext_resource type="SpriteFrames" uid="uid://cq5cao5urohsj" path="res://assets/characters/classroom/normal/classmate_female_03_frames.tres" id="frames_classmate_female_03"]
+[ext_resource type="SpriteFrames" uid="uid://dj4g8tdy4bgy6" path="res://assets/characters/classroom/normal/classmate_male_01_frames.tres" id="frames_classmate_male_01"]
+[ext_resource type="SpriteFrames" uid="uid://bbjxs2hwyb1nx" path="res://assets/characters/classroom/normal/classmate_male_02_frames.tres" id="frames_classmate_male_02"]
+[ext_resource type="SpriteFrames" uid="uid://86mi3tm855i2" path="res://assets/characters/classroom/normal/jules_frames.tres" id="frames_jules"]
+[ext_resource type="SpriteFrames" uid="uid://bsv0smirup7fb" path="res://assets/characters/classroom/normal/liezel_frames.tres" id="frames_liezel"]
+[ext_resource type="SpriteFrames" uid="uid://bayyq4tyunter" path="res://assets/characters/classroom/normal/professor_frames.tres" id="frames_professor"]
+
+[sub_resource type="ShaderMaterial" id="IntrusiveText"]
+resource_local_to_scene = true
+shader = ExtResource("5_intrusion")
+shader_parameter/amount = 0.0
+shader_parameter/effect_time = 0.0
+
+[sub_resource type="RectangleShape2D" id="ProfessorFeet"]
+size = Vector2(24, 14)
+
+[node name="ClassroomOpening" type="Node2D" unique_id=31037322]
+editor_description = "Scene 01 â€” Time Called: opening, quiz, dismissal, instructor conversation, all three perception pairs and the paper-focused conclusion. Emits scene_completed once and holds in Normal Reality; Hallway integration remains pending."
+texture_filter = 1
+script = ExtResource("3_opening")
+
+[node name="Foundation" parent="." unique_id=1628225459 instance=ExtResource("1_foundation")]
+
+[node name="Manifested" parent="Foundation/Classroom/Presentation" index="1" unique_id=1886527819 instance=ExtResource("17_manifested")]
+
+[node name="NormalNPCs" type="Node2D" parent="Foundation" unique_id=1328682392]
+editor_description = "Normal classroom visual cast only. Feet anchors follow Classroom/SeatAnchors; 5x native frames retain individual silhouette heights. No NPC collisions or movement behaviour."
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Jules" type="Node2D" parent="Foundation/NormalNPCs" unique_id=54678018]
+editor_description = "Row1Seat3; provisional seated E idle, matching Albert foot registration."
+position = Vector2(754, 756)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/Jules" unique_id=896777808]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_jules")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/Jules" unique_id=1355633994 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="Liezel" type="Node2D" parent="Foundation/NormalNPCs" unique_id=42869348]
+editor_description = "Row2Seat1; provisional seated E idle, matching Albert foot registration."
+position = Vector2(590, 500)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/Liezel" unique_id=1581710124]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_liezel")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/Liezel" unique_id=585666639 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClassmateMale01" type="Node2D" parent="Foundation/NormalNPCs" unique_id=1157903999]
+editor_description = "Row2Seat2; provisional seated E idle, matching Albert foot registration."
+position = Vector2(590, 628)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/ClassmateMale01" unique_id=1059122737]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_classmate_male_01")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/ClassmateMale01" unique_id=1286390695 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClassmateMale02" type="Node2D" parent="Foundation/NormalNPCs" unique_id=1858915511]
+editor_description = "Row2Seat3; provisional seated E idle, matching Albert foot registration."
+position = Vector2(590, 756)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/ClassmateMale02" unique_id=528424949]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_classmate_male_02")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/ClassmateMale02" unique_id=1824765340 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClassmateFemale01" type="Node2D" parent="Foundation/NormalNPCs" unique_id=2019335955]
+editor_description = "Row3Seat2; provisional seated E idle, matching Albert foot registration."
+position = Vector2(427, 630)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/ClassmateFemale01" unique_id=223121909]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_classmate_female_01")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/ClassmateFemale01" unique_id=955555413 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClassmateFemale02" type="Node2D" parent="Foundation/NormalNPCs" unique_id=252345854]
+editor_description = "Row3Seat3; provisional seated E idle, matching Albert foot registration."
+position = Vector2(427, 758)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/ClassmateFemale02" unique_id=1367644391]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_classmate_female_02")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/ClassmateFemale02" unique_id=664997037 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClassmateFemale03" type="Node2D" parent="Foundation/NormalNPCs" unique_id=1387962456]
+editor_description = "Row4Seat1; provisional seated E idle, matching Albert foot registration."
+position = Vector2(263, 502)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/ClassmateFemale03" unique_id=959480030]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_classmate_female_03")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/ClassmateFemale03" unique_id=1758813490 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="Professor" type="Node2D" parent="Foundation/NormalNPCs" unique_id=133701166]
+editor_description = "InstructorStandingApproach; standing, facing the class (mirrored E idle)."
+position = Vector2(1122, 572)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Foundation/NormalNPCs/Professor" unique_id=1940237176]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("frames_professor")
+animation = &"idle_right"
+autoplay = "idle_right"
+offset = Vector2(0, -9)
+flip_h = true
+
+[node name="ActorShadow2D" parent="Foundation/NormalNPCs/Professor" unique_id=2010909026 instance=ExtResource("16_shadow")]
+height_scale = 0.65
+ground_depth = 0.08
+cast_strength = 0.65
+contact_size = Vector2(32, 8)
+
+[node name="ClockTicking" type="AudioStreamPlayer" parent="." unique_id=1955736007]
+
+[node name="StoryLayer" type="CanvasLayer" parent="." unique_id=36898852]
+layer = 4
+
+[node name="DialoguePanel" parent="StoryLayer" unique_id=691121035 instance=ExtResource("2_dialogue")]
+visible = false
+texture_filter = 1
+presentation = 1
+world = 1
+speaker_name = "Albert"
+
+[node name="InstructorObjective" parent="StoryLayer" unique_id=335983939 instance=ExtResource("7_objective")]
+layout_mode = 3
+offset_top = 72.0
+offset_right = 464.0
+offset_bottom = 138.0
+
+[node name="InstructorPrompt" type="Label" parent="StoryLayer" unique_id=1801945641]
+visible = false
+offset_left = 1010.0
+offset_top = 330.0
+offset_right = 1230.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0.95, 0.87, 0.65, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("10_font")
+theme_override_font_sizes/font_size = 26
+text = "E / Space"
+horizontal_alignment = 1
+
+[node name="RevealLayer" type="CanvasLayer" parent="." unique_id=1577787612]
+layer = 10
+
+[node name="Blackout" type="ColorRect" parent="RevealLayer" unique_id=283447663]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="QuizSequence" type="Node" parent="." unique_id=439169848]
+script = ExtResource("4_quiz")
+intrusion_material = SubResource("IntrusiveText")
+
+[node name="DismissalSequence" type="Node" parent="." unique_id=635297742]
+script = ExtResource("6_dismissal")
+intrusion_material = SubResource("IntrusiveText")
+
+[node name="ProfessorConversation" type="Node" parent="." unique_id=1512391543]
+script = ExtResource("11_conversation")
+intrusion_material = SubResource("IntrusiveText")
+
+[node name="ClassroomAudio" type="Node" parent="." unique_id=1997490941]
+script = ExtResource("12_audio")
+
+[node name="GlitchA" type="AudioStreamPlayer" parent="ClassroomAudio" unique_id=1039868412]
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="GlitchB" type="AudioStreamPlayer" parent="ClassroomAudio" unique_id=1799976460]
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="Advance" type="AudioStreamPlayer" parent="ClassroomAudio" unique_id=777215153]
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="TimeHUD" parent="." unique_id=947961817 instance=ExtResource("14_timehud")]
+layer = 11
+avoid_controls = Array[NodePath]([NodePath("../StoryLayer/InstructorObjective"), NodePath("../StoryLayer/InstructorPrompt")])
+prefer_upper_right = true
+upper_right_inset_y = 72.0
+
+[node name="ClassroomTime" type="Node" parent="." unique_id=887149532]
+script = ExtResource("15_time")
+
+[node name="InstructorMarker" parent="." unique_id=1114703989 instance=ExtResource("exit_marker")]
+position = Vector2(1122, 478)
+scale = Vector2(3, 3)
+
+[node name="InstructorInteraction" type="Node2D" parent="." unique_id=491145923]
+position = Vector2(1122, 572)
+script = ExtResource("9_target")
+visual_path = NodePath("../Foundation/NormalNPCs/Professor")
+visual_bounds = Rect2(-40, -90, 80, 90)
+
+[node name="ProfessorFootprint" type="StaticBody2D" parent="." unique_id=442809822]
+position = Vector2(1122, 572)
+collision_mask = 0
+
+[node name="Feet" type="CollisionShape2D" parent="ProfessorFootprint" unique_id=1368102167]
+position = Vector2(0, -7)
+shape = SubResource("ProfessorFeet")
+disabled = true
+
+[node name="RealityPresentation" type="Node" parent="." unique_id=1493112973]
+script = ExtResource("18_reality")
+presenter_path = NodePath("../ClassroomRealityPresenter")
+transition_effect_path = NodePath("../RealityGlitch")
+
+[node name="ClassroomRealityPresenter" type="Node" parent="." unique_id=421620416]
+script = ExtResource("19_presenter")
+
+[node name="RealityGlitch" parent="." unique_id=888060408 instance=ExtResource("20_glitch")]
+protected_actor_path = NodePath("../Foundation/Player/AnimatedSprite2D")
+protected_hud_path = NodePath("../TimeHUD/Screen/Frame")
+reduced_motion_sources = Array[NodePath]([NodePath("../QuizSequence"), NodePath("../ProfessorConversation"), NodePath("../Foundation/ClassroomLighting")])
+
+[node name="PsychPresentation" parent="." unique_id=581279048 instance=ExtResource("28_8wlm1")]
+
+[node name="ClassroomExit" type="Node2D" parent="." unique_id=697793036]
+position = Vector2(1066, 918)
+script = ExtResource("exit_script")
+
+[node name="Marker" parent="ClassroomExit" unique_id=1197749126 instance=ExtResource("exit_marker")]
+position = Vector2(0, -24)
+scale = Vector2(3, 3)
+
+[connection signal="opening_finished" from="." to="QuizSequence" method="_on_opening_finished"]
+[connection signal="quiz_finished" from="QuizSequence" to="DismissalSequence" method="_on_opening_finished"]
+[connection signal="instructor_requested" from="DismissalSequence" to="ProfessorConversation" method="_on_instructor_requested"]
+[connection signal="quiz_finished" from="DismissalSequence" to="DismissalSequence" method="_on_sequence_finished"]
+[connection signal="stage_direction" from="DismissalSequence" to="DismissalSequence" method="_on_stage_direction"]
+[connection signal="stage_direction" from="DismissalSequence" to="ClassroomAudio" method="_on_dismissal_cue"]
+[connection signal="conversation_finished" from="ProfessorConversation" to="." method="_on_professor_conversation_finished"]
+[connection signal="conversation_started" from="ProfessorConversation" to="ClassroomAudio" method="_on_conversation_started"]
+[connection signal="manifestation_requested" from="ProfessorConversation" to="ClassroomAudio" method="_on_manifestation_requested"]
+[connection signal="manifestation_requested" from="ProfessorConversation" to="RealityPresentation" method="_on_manifestation_requested"]
+[connection signal="quiz_finished" from="ProfessorConversation" to="ProfessorConversation" method="_on_normal_segment_finished"]
+
+[editable path="Foundation"]
+[editable path="Foundation/Classroom"]

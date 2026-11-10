@@ -1,0 +1,27 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Incoming source deliveries
+/_asset_inbox/
+
+# Local editor templates/profiles and setup scratch directories
+/export_templates/
+/feature_profiles/
+/script_templates/
+/text_editor_themes/
+
+# Classroom iteration captures and scratch validation reports (kept locally)
+/docs/classroom/
+/docs/classroom_foundation.md
+/tests/scenarios/classroom_normal_foundation.json
+
+# Local credentials, logs and editor backups
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+*.bak
+*.kra~
+*.kra-autosave

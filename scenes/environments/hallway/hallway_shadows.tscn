@@ -1,0 +1,56 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hallway_shadows.gd" id="receiver"]
+[ext_resource type="Shader" path="res://shaders/shadow_mask_writer.gdshader" id="writer"]
+[ext_resource type="Texture2D" path="res://assets/environments/hallway/foreground/hallway_normal_fg_railing.png" id="railing"]
+[ext_resource type="Shader" path="res://shaders/actor_shadow_mask.gdshader" id="alpha_writer"]
+
+[sub_resource type="ShaderMaterial" id="Coverage"]
+shader = ExtResource("writer")
+
+[sub_resource type="ShaderMaterial" id="RailingCoverage"]
+shader = ExtResource("alpha_writer")
+shader_parameter/strength = 0.48
+
+[node name="HallwayShadows" type="Node"]
+script = ExtResource("receiver")
+
+[node name="Mask" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1921, 480)
+render_target_update_mode = 1
+
+[node name="MapCoordinates" type="Node2D" parent="Mask"]
+scale = Vector2(0.5, 0.5)
+texture_filter = 1
+
+[node name="Architecture" type="Node2D" parent="Mask/MapCoordinates"]
+
+[node name="Pillar01" type="Polygon2D" parent="Mask/MapCoordinates/Architecture"]
+position = Vector2(924.5, 948)
+material = SubResource("Coverage")
+color = Color(0.85, 0, 0, 1)
+metadata/footprint = PackedVector2Array(-50, -8, 50, -8, 50, 8, -50, 8)
+metadata/height = 240.0
+metadata/provisional = "Base obscured by lower canvas/rail. Center follows approved 127px pillar; not a collider."
+
+[node name="Pillar02" type="Polygon2D" parent="Mask/MapCoordinates/Architecture"]
+position = Vector2(2095.5, 948)
+material = SubResource("Coverage")
+color = Color(0.85, 0, 0, 1)
+metadata/footprint = PackedVector2Array(-50, -8, 50, -8, 50, 8, -50, 8)
+metadata/height = 240.0
+
+[node name="Pillar03" type="Polygon2D" parent="Mask/MapCoordinates/Architecture"]
+position = Vector2(3264.5, 948)
+material = SubResource("Coverage")
+color = Color(0.85, 0, 0, 1)
+metadata/footprint = PackedVector2Array(-50, -8, 50, -8, 50, 8, -50, 8)
+metadata/height = 240.0
+
+[node name="RailingCast" type="Sprite2D" parent="Mask/MapCoordinates/Architecture"]
+material = SubResource("RailingCoverage")
+texture = ExtResource("railing")
+centered = false
+metadata/provisional = "Existing authored rail alpha projected about lower edge y954. Finite visual-height approximation, not individually invented bars or physical 3D."

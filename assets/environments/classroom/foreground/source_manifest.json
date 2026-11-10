@@ -1,0 +1,13 @@
+{
+  "source": "res://art_source/environments/classroom/classroom.kra",
+  "source_sha256": "59616F4BACDDCF353AA07E4061FCF4C713208CA1B4785B04B41147BFC1C9CE24",
+  "rgb_source": "res://assets/environments/classroom/classroom_normal.png",
+  "rgb_source_sha256": "1FAE567BDB4C418F249EA74CEE84D5F8480ED68FAF628C25AD375418C04BE3B0",
+  "method": "Krita CLI exported an OpenRaster copy into .godot/classroom_instructor_access/source-layers.ora. Each foreground uses nonzero alpha coverage from its original paint layer, and copies RGB/alpha from the existing saved composite at the same canvas coordinates. Composite edge pixels are retained as-is, without resampling or repainting. Zero-coverage pixels stay transparent.",
+  "layers": [
+    {"file":"instructor_desk.png","name":"Paint Layer 7","uuid":"f15881e0-d4c9-4bec-8cbc-2f6e3e60db18","origin":[988,464],"size":[113,325]},
+    {"file":"instructor_chair.png","name":"Paint Layer 13","uuid":"5fedb571-98c9-42c8-a0bd-b985f609e9a6","origin":[1119,537],"size":[69,136]},
+    {"file":"wall_equipment.png","name":"Paint Layer 6","uuid":"2919ddbd-a1b6-4ce7-9d3f-2002fe0a4ecf","origin":[1207,382],"size":[28,297]}
+  ],
+  "preservation": "Source KRA and original composite unchanged. Artwork-only runtime equals the original composite over black at all 1,228,800 pixels. Re-export silhouettes when the normal artwork changes; these are static normal-state foregrounds."
+}

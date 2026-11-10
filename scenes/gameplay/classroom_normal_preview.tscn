@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/gameplay/classroom_normal.tscn" id="1_foundation"]
+
+[node name="ClassroomNormalPreview" instance=ExtResource("1_foundation")]
+development_preview = true
+editor_description = "Development only: existing arrow/WASD movement enabled. Same seat spawn, geometry and fixed camera as the locked foundation; no runtime unlock shortcut."

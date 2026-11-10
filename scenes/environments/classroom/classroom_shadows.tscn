@@ -1,0 +1,318 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scripts/classroom_shadows.gd" id="1"]
+[ext_resource type="Shader" path="res://shaders/shadow_mask_writer.gdshader" id="2"]
+[sub_resource type="ShaderMaterial" id="CastWriter"]
+shader = ExtResource("2")
+[sub_resource type="ShaderMaterial" id="ContactWriter"]
+shader = ExtResource("2")
+[node name="ClassroomShadows" type="Node"]
+script = ExtResource("1")
+[node name="Mask" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640,480)
+render_target_update_mode = 1
+[node name="MapCoordinates" type="Node2D" parent="Mask"]
+scale = Vector2(0.5,0.5)
+texture_filter = 1
+[node name="Casters" type="Node2D" parent="Mask/MapCoordinates"]
+
+[node name="NorthCabinetLeft" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(231,393)
+metadata/source_geometry = "Geometry/NorthCabinetLeft/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-113, -25, 113, -25, 113, 25, -113, 25)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetLeft"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-113, -25, 113, -25, 113, 25, -113, 25)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetLeft"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-115, -27, 115, -27, 115, 27, -115, 27)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="NorthCabinetMiddle" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(470,393)
+metadata/source_geometry = "Geometry/NorthCabinetMiddle/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-114, -25, 114, -25, 114, 25, -114, 25)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetMiddle"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-114, -25, 114, -25, 114, 25, -114, 25)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetMiddle"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-116, -27, 116, -27, 116, 27, -116, 27)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="NorthCabinetRight" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(813,393)
+metadata/source_geometry = "Geometry/NorthCabinetRight/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-113, -25, 113, -25, 113, 25, -113, 25)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetRight"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-113, -25, 113, -25, 113, 25, -113, 25)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/NorthCabinetRight"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-115, -27, 115, -27, 115, 27, -115, 27)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="WestCabinetUpper" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(66,413)
+metadata/source_geometry = "Geometry/WestCabinetUpper/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-30, -85, 30, -85, 30, 85, -30, 85)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/WestCabinetUpper"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-30, -85, 30, -85, 30, 85, -30, 85)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/WestCabinetUpper"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-32, -87, 32, -87, 32, 87, -32, 87)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="WestCabinetLower" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(66,843)
+metadata/source_geometry = "Geometry/WestCabinetLower/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-30, -91, 30, -91, 30, 91, -30, 91)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/WestCabinetLower"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-30, -91, 30, -91, 30, 91, -30, 91)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/WestCabinetLower"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-32, -93, 32, -93, 32, 93, -32, 93)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="InstructorWorkstation" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(1045,627)
+metadata/source_geometry = "Geometry/InstructorWorkstation/Footprint"
+metadata/height = 38.0
+metadata/footprint = PackedVector2Array(-57, -163, 57, -163, 57, 163, -57, 163)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/InstructorWorkstation"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-57, -163, 57, -163, 57, 163, -57, 163)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/InstructorWorkstation"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-59, -165, 59, -165, 59, 165, -59, 165)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="InstructorChair" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(1154,656)
+metadata/source_geometry = "Geometry/InstructorChair/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-34, -22, 34, -22, 34, 22, -34, 22)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/InstructorChair"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-34, -22, 34, -22, 34, 22, -34, 22)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/InstructorChair"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-36, -24, 36, -24, 36, 24, -36, 24)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="FrontEquipment" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(1221,531)
+metadata/source_geometry = "Geometry/FrontEquipment/Footprint"
+metadata/height = 42.0
+metadata/footprint = PackedVector2Array(-15, -149, 15, -149, 15, 149, -15, 149)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/FrontEquipment"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-15, -149, 15, -149, 15, 149, -15, 149)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/FrontEquipment"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-17, -151, 17, -151, 17, 151, -17, 151)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row1Seat1" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(748,531)
+metadata/source_geometry = "Geometry/Row1Seat1/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat1"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat1"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row1Seat2" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(748,657)
+metadata/source_geometry = "Geometry/Row1Seat2/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat2"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat2"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row1Seat3" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(748,785)
+metadata/source_geometry = "Geometry/Row1Seat3/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat3"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row1Seat3"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row2Seat1" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(584,529)
+metadata/source_geometry = "Geometry/Row2Seat1/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat1"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat1"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row2Seat2" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(584,657)
+metadata/source_geometry = "Geometry/Row2Seat2/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat2"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat2"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row2Seat3" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(584,785)
+metadata/source_geometry = "Geometry/Row2Seat3/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat3"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row2Seat3"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row3Seat1" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(421,531)
+metadata/source_geometry = "Geometry/Row3Seat1/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat1"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat1"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row3Seat2" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(421,659)
+metadata/source_geometry = "Geometry/Row3Seat2/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat2"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat2"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row3Seat3" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(421,787)
+metadata/source_geometry = "Geometry/Row3Seat3/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat3"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row3Seat3"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row4Seat1" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(257,531)
+metadata/source_geometry = "Geometry/Row4Seat1/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat1"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat1"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row4Seat2" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(257,659)
+metadata/source_geometry = "Geometry/Row4Seat2/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat2"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat2"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)
+
+[node name="Row4Seat3" type="Node2D" parent="Mask/MapCoordinates/Casters"]
+position = Vector2(257,787)
+metadata/source_geometry = "Geometry/Row4Seat3/Footprint"
+metadata/height = 28.0
+metadata/footprint = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Sun" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat3"]
+material = SubResource("CastWriter")
+color = Color(0.65,0,0,1)
+polygon = PackedVector2Array(-40, -21, 40, -21, 40, 21, -40, 21)
+[node name="Contact" type="Polygon2D" parent="Mask/MapCoordinates/Casters/Row4Seat3"]
+material = SubResource("ContactWriter")
+color = Color(0,0.32,0,1)
+polygon = PackedVector2Array(-42, -23, 42, -23, 42, 23, -42, 23)
+uv = PackedVector2Array(0,0,1,0,1,1,0,1)

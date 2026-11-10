@@ -1,0 +1,183 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/ui/main_menu/main_menu.png" id="1_art"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_menu"]
+[ext_resource type="FontFile" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="3_font"]
+
+[sub_resource type="StyleBoxFlat" id="CreditsPanelStyle"]
+bg_color = Color(0.025, 0.04, 0.075, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.58, 0.65, 0.76, 0.9)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 36.0
+content_margin_top = 28.0
+content_margin_right = 36.0
+content_margin_bottom = 28.0
+
+[sub_resource type="FontVariation" id="CreditsFont"]
+base_font = ExtResource("3_font")
+spacing_top = -24
+spacing_bottom = -24
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_filter = 1
+script = ExtResource("2_menu")
+
+[node name="Artwork" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_art")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CreditsView" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Shade" type="ColorRect" parent="CreditsView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0.015, 0.025, 0.05, 0.78)
+
+[node name="CenterPanel" type="PanelContainer" parent="CreditsView"]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -320.0
+offset_right = 300.0
+offset_bottom = 320.0
+theme_override_styles/panel = SubResource("CreditsPanelStyle")
+
+[node name="Content" type="VBoxContainer" parent="CreditsView/CenterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.953, 0.918, 0.835, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 50
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Names" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Prince"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameAli" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Ali"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameChristan" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Christan"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLawrence" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Lawrence"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameIsabela" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Isabela"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameKayla" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Kayla"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameWayne" type="Label" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.824, 0.847, 0.882, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "Wayne"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="CreditsView/CenterPanel/Content"]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.953, 0.918, 0.835, 1)
+theme_override_fonts/font = SubResource("CreditsFont")
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Black" type="ColorRect" parent="FadeLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

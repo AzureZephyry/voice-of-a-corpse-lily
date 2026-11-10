@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/scene02_objectives.gd" id="script"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_panel.tscn" id="panel"]
+
+[node name="GameplayUI" type="CanvasLayer"]
+layer = 11
+script = ExtResource("script")
+
+[node name="Objective" parent="." instance=ExtResource("panel")]
+offset_right = 500.0

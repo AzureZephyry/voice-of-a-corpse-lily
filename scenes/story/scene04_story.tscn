@@ -1,0 +1,410 @@
+[gd_scene format=3 uid="uid://ce62blq615way"]
+
+[ext_resource type="AudioStream" uid="uid://b5cnmerh4uecq" path="res://assets/audio/sfx/dialogue_blip.wav" id="advance"]
+[ext_resource type="Script" uid="uid://sv7tevy0pm7q" path="res://scripts/scene04_audio.gd" id="audio"]
+[ext_resource type="Texture2D" uid="uid://busvd3u0bsngh" path="res://assets/environments/bedroom/bedroom_normal.png" id="bedroom"]
+[ext_resource type="Script" uid="uid://cbuuh60heihia" path="res://scripts/player_movement.gd" id="control"]
+[ext_resource type="Script" uid="uid://dq5s71wk4cl74" path="res://scripts/intrusive_echo_fragment.gd" id="echo"]
+[ext_resource type="PackedScene" uid="uid://d3det35ey18mj" path="res://scenes/UI/eyelid_effect.tscn" id="eye"]
+[ext_resource type="FontFile" uid="uid://bw7pav7rmjw8v" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="font"]
+[ext_resource type="PackedScene" path="res://scenes/audio/footstep_audio.tscn" id="footsteps"]
+[ext_resource type="Texture2D" uid="uid://b71u665hhr68h" path="res://assets/environments/garden/garden_manifested.png" id="garden"]
+[ext_resource type="PackedScene" path="res://scenes/components/reality_glitch.tscn" id="glitch"]
+[ext_resource type="Script" uid="uid://vxlc68fqb0f2" path="res://scripts/scene04_story.gd" id="host"]
+[ext_resource type="Shader" uid="uid://cjreojj5dnr7h" path="res://shaders/scene04_interior.gdshader" id="interior"]
+[ext_resource type="Shader" uid="uid://b6orfqkpkdudq" path="res://shaders/dialogue_intrusion.gdshader" id="intrusion"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_marker.tscn" id="marker"]
+[ext_resource type="Script" uid="uid://dvkcesjgrptic" path="res://scripts/scene04_narrative.gd" id="narrative"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_panel.tscn" id="objective"]
+[ext_resource type="PackedScene" uid="uid://dpyt04ru3m6ad" path="res://scenes/UI/dialogue_panel.tscn" id="panel"]
+[ext_resource type="PackedScene" uid="uid://b1aoc87u33jos" path="res://scenes/player.tscn" id="player"]
+[ext_resource type="Script" uid="uid://dwtfptjnmqrif" path="res://scripts/scene04_presenter.gd" id="presenter"]
+[ext_resource type="Script" uid="uid://cd5kxa0akcn5d" path="res://scripts/reality_presentation.gd" id="reality"]
+[ext_resource type="Shader" uid="uid://f1otsawpqmek" path="res://shaders/scene04_garden_reveal.gdshader" id="reveal"]
+[ext_resource type="Script" uid="uid://csrfk8q0n2jo1" path="res://scripts/scene04_shadows.gd" id="shadows"]
+[ext_resource type="Script" path="res://scripts/audio/reality_transition_audio.gd" id="transition_audio"]
+[ext_resource type="Shader" uid="uid://c2s0f2e3hf6x" path="res://shaders/scene04_shadow_receiver.gdshader" id="shadow_shader"]
+[ext_resource type="PackedScene" path="res://scenes/UI/time_hud.tscn" id="time"]
+[ext_resource type="Shader" uid="uid://nrmqvwrc17pq" path="res://shaders/scene04_window_spill.gdshader" id="window_spill"]
+
+[sub_resource type="ShaderMaterial" id="Interior"]
+resource_local_to_scene = true
+shader = ExtResource("interior")
+shader_parameter/manifested = false
+shader_parameter/daylight = 0.5
+shader_parameter/pane_color = Color(0.44, 0.55, 0.62, 1)
+
+[sub_resource type="ShaderMaterial" id="Reveal"]
+resource_local_to_scene = true
+shader = ExtResource("reveal")
+shader_parameter/progress = 0.0
+shader_parameter/reduced_motion = false
+shader_parameter/breath = 0.0
+
+[sub_resource type="RectangleShape2D" id="BedroomFeet"]
+size = Vector2(38, 18)
+
+[sub_resource type="ShaderMaterial" id="Intrusion"]
+resource_local_to_scene = true
+shader = ExtResource("intrusion")
+shader_parameter/amount = 0.0
+shader_parameter/effect_time = 0.0
+
+[sub_resource type="AudioEffectLowPassFilter" id="Clarity"]
+resource_local_to_scene = true
+cutoff_hz = 20000.0
+
+[sub_resource type="FontVariation" id="HorrorFont"]
+base_font = ExtResource("font")
+spacing_top = -52
+spacing_bottom = -32
+
+[sub_resource type="ShaderMaterial" id="ShadowReceiver"]
+resource_local_to_scene = true
+shader = ExtResource("shadow_shader")
+shader_parameter/sun_strength = 0.3
+
+[sub_resource type="ShaderMaterial" id="WindowSpill"]
+resource_local_to_scene = true
+shader = ExtResource("window_spill")
+shader_parameter/strength = 0.17
+shader_parameter/skew = 0.0
+shader_parameter/light_color = Color(0.83, 0.82, 0.73, 1)
+
+[sub_resource type="RectangleShape2D" id="FootClothesRack"]
+size = Vector2(78, 22)
+
+[sub_resource type="RectangleShape2D" id="FootWardrobe"]
+size = Vector2(180, 65)
+
+[sub_resource type="RectangleShape2D" id="FootDesk"]
+size = Vector2(160, 345)
+
+[sub_resource type="RectangleShape2D" id="FootChair"]
+size = Vector2(94, 120)
+
+[sub_resource type="RectangleShape2D" id="FootBed"]
+size = Vector2(156, 278)
+
+[sub_resource type="RectangleShape2D" id="FootNightTable"]
+size = Vector2(122, 85)
+
+[sub_resource type="RectangleShape2D" id="FootLeftWall"]
+size = Vector2(12, 960)
+
+[sub_resource type="RectangleShape2D" id="FootRightWall"]
+size = Vector2(12, 960)
+
+[sub_resource type="RectangleShape2D" id="FootRearWall"]
+size = Vector2(1280, 400)
+
+[node name="Scene04Story" type="Node2D" unique_id=618166576]
+texture_filter = 1
+script = ExtResource("host")
+
+[node name="Backdrop" type="Polygon2D" parent="." unique_id=135089176]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 960, 0, 960)
+
+[node name="Bedroom" type="Sprite2D" parent="." unique_id=313396394]
+modulate = Color(0.72, 0.72, 0.78, 1)
+material = SubResource("Interior")
+scale = Vector2(2, 2)
+texture = ExtResource("bedroom")
+centered = false
+
+[node name="Garden" type="Sprite2D" parent="." unique_id=1825755931]
+visible = false
+material = SubResource("Reveal")
+position = Vector2(15, 5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("garden")
+centered = false
+
+[node name="Player" parent="." unique_id=782054969 instance=ExtResource("player")]
+position = Vector2(640, 580)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("control")
+
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+scale = Vector2(6, 6)
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+position = Vector2(0, -9)
+shape = SubResource("BedroomFeet")
+
+[node name="FootstepAudio" parent="Player" unique_id=733591037 instance=ExtResource("footsteps")]
+movement_driven_externally = true
+surface_provider = NodePath("../../EndingAudio")
+
+[node name="Presentation" type="Node" parent="." unique_id=352932022]
+script = ExtResource("presenter")
+
+[node name="RealityPresentation" type="Node" parent="." unique_id=1894670722]
+script = ExtResource("reality")
+presenter_path = NodePath("../Presentation")
+transition_effect_path = NodePath("../RealityGlitch")
+
+[node name="RealityGlitch" parent="." unique_id=1591287266 instance=ExtResource("glitch")]
+protected_actor_path = NodePath("../Player/AnimatedSprite2D")
+
+[node name="TransitionAudio" type="Node" parent="."]
+script = ExtResource("transition_audio")
+
+[node name="GlitchA" type="AudioStreamPlayer" parent="TransitionAudio"]
+bus = &"SFX"
+
+[node name="GlitchB" type="AudioStreamPlayer" parent="TransitionAudio"]
+bus = &"SFX"
+
+[node name="Narrative" type="Node" parent="." unique_id=175503083]
+script = ExtResource("narrative")
+player_path = NodePath("../Player")
+intrusion_material = SubResource("Intrusion")
+
+[node name="StoryLayer" type="CanvasLayer" parent="." unique_id=1430111252]
+layer = 10
+
+[node name="DialoguePanel" parent="StoryLayer" unique_id=329213215 instance=ExtResource("panel")]
+visible = false
+
+[node name="EndingAudio" type="Node" parent="." unique_id=1560996895]
+script = ExtResource("audio")
+clarity_filter = SubResource("Clarity")
+
+[node name="Advance" type="AudioStreamPlayer" parent="EndingAudio" unique_id=857550005]
+stream = ExtResource("advance")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="Ending" type="CanvasLayer" parent="." unique_id=281443180]
+layer = 30
+
+[node name="Black" type="ColorRect" parent="Ending" unique_id=1170140627]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Objectives" type="CanvasLayer" parent="." unique_id=481353255]
+layer = 12
+
+[node name="Objective" parent="Objectives" unique_id=1283153657 instance=ExtResource("objective")]
+layout_mode = 3
+
+[node name="TimeHUD" parent="." unique_id=1060582507 instance=ExtResource("time")]
+prefer_upper_right = true
+
+[node name="Marker" parent="." unique_id=1428538428 instance=ExtResource("marker")]
+scale = Vector2(2, 2)
+
+[node name="Lily" type="Node2D" parent="." unique_id=516025843]
+visible = false
+
+[node name="PromptLayer" type="CanvasLayer" parent="." unique_id=624716421]
+layer = 11
+
+[node name="Prompt" type="Label" parent="PromptLayer" unique_id=423187282]
+offset_left = 480.0
+offset_top = 600.0
+offset_right = 800.0
+offset_bottom = 660.0
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 32
+
+[node name="Eyes" parent="." unique_id=1020800111 instance=ExtResource("eye")]
+layer = 25
+visible = false
+auto_start = false
+free_on_finish = false
+
+[node name="SleepCover" type="CanvasLayer" parent="." unique_id=575445444]
+layer = 24
+
+[node name="Black" type="ColorRect" parent="SleepCover" unique_id=2066257274]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="EchoLayer" type="CanvasLayer" parent="." unique_id=655021400]
+layer = 6
+visible = false
+
+[node name="Echoes" type="Control" parent="EchoLayer" unique_id=1928672909]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Echo0" type="Control" parent="EchoLayer/Echoes" unique_id=1816873954]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 170.0
+offset_right = 430.0
+offset_bottom = 315.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Echo1" type="Control" parent="EchoLayer/Echoes" unique_id=35182201]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 820.0
+offset_top = 160.0
+offset_right = 1200.0
+offset_bottom = 305.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Echo2" type="Control" parent="EchoLayer/Echoes" unique_id=576150344]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 300.0
+offset_right = 580.0
+offset_bottom = 445.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Echo3" type="Control" parent="EchoLayer/Echoes" unique_id=1436933435]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 800.0
+offset_top = 380.0
+offset_right = 1180.0
+offset_bottom = 525.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Echo4" type="Control" parent="EchoLayer/Echoes" unique_id=924641323]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 500.0
+offset_right = 480.0
+offset_bottom = 645.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Echo5" type="Control" parent="EchoLayer/Echoes" unique_id=713605508]
+modulate = Color(0.7, 0.18, 0.25, 0.7)
+anchors_preset = 0
+offset_left = 650.0
+offset_top = 250.0
+offset_right = 1030.0
+offset_bottom = 395.0
+mouse_filter = 2
+script = ExtResource("echo")
+font = SubResource("HorrorFont")
+heavier_font = SubResource("HorrorFont")
+
+[node name="Shadows" type="Node" parent="." unique_id=1886802506]
+script = ExtResource("shadows")
+
+[node name="Mask" type="SubViewport" parent="Shadows" unique_id=206547944]
+transparent_bg = true
+size = Vector2i(1280, 960)
+render_target_update_mode = 0
+
+[node name="Coordinates" type="Node2D" parent="Shadows/Mask" unique_id=621233491]
+
+[node name="Architecture" type="Node2D" parent="Shadows/Mask/Coordinates" unique_id=1890172388]
+
+[node name="WardrobeCast" type="Polygon2D" parent="Shadows/Mask/Coordinates/Architecture" unique_id=220471922]
+color = Color(0.55, 0, 0, 1)
+metadata/footprint = PackedVector2Array(228, 438, 408, 438, 408, 460, 228, 460)
+metadata/height = 220.0
+
+[node name="NightTableCast" type="Polygon2D" parent="Shadows/Mask/Coordinates/Architecture" unique_id=183988627]
+color = Color(0.55, 0, 0, 1)
+metadata/footprint = PackedVector2Array(842, 465, 964, 465, 964, 483, 842, 483)
+metadata/height = 95.0
+
+[node name="BedCast" type="Polygon2D" parent="Shadows/Mask/Coordinates/Architecture" unique_id=1447109233]
+color = Color(0.55, 0, 0, 1)
+metadata/footprint = PackedVector2Array(1054, 665, 1210, 665, 1210, 683, 1054, 683)
+metadata/height = 90.0
+
+[node name="ChairCast" type="Polygon2D" parent="Shadows/Mask/Coordinates/Architecture" unique_id=1285827696]
+color = Color(0.55, 0, 0, 1)
+metadata/footprint = PackedVector2Array(224, 675, 318, 675, 318, 690, 224, 690)
+metadata/height = 70.0
+
+[node name="Map" type="Sprite2D" parent="Shadows" unique_id=545514677]
+visible = false
+texture = ExtResource("bedroom")
+centered = false
+
+[node name="Receiver" type="Sprite2D" parent="Shadows" unique_id=1492336398]
+z_index = 1
+material = SubResource("ShadowReceiver")
+centered = false
+
+[node name="WindowSpill" type="ColorRect" parent="." unique_id=27249344]
+z_index = 1
+material = SubResource("WindowSpill")
+offset_right = 1280.0
+offset_bottom = 960.0
+mouse_filter = 2
+
+[node name="BedroomGeometry" type="StaticBody2D" parent="." unique_id=781010229]
+collision_layer = 4
+collision_mask = 0
+
+[node name="ClothesRack" type="CollisionShape2D" parent="BedroomGeometry" unique_id=2031551525]
+position = Vector2(488, 450)
+shape = SubResource("FootClothesRack")
+
+[node name="Wardrobe" type="CollisionShape2D" parent="BedroomGeometry" unique_id=1425561703]
+position = Vector2(318, 432.5)
+shape = SubResource("FootWardrobe")
+
+[node name="Desk" type="CollisionShape2D" parent="BedroomGeometry" unique_id=1273739191]
+position = Vector2(105, 627.5)
+shape = SubResource("FootDesk")
+
+[node name="Chair" type="CollisionShape2D" parent="BedroomGeometry" unique_id=299747976]
+position = Vector2(271, 630)
+shape = SubResource("FootChair")
+
+[node name="Bed" type="CollisionShape2D" parent="BedroomGeometry" unique_id=325924302]
+position = Vector2(1132, 544)
+shape = SubResource("FootBed")
+
+[node name="NightTable" type="CollisionShape2D" parent="BedroomGeometry" unique_id=354700085]
+position = Vector2(903, 442.5)
+shape = SubResource("FootNightTable")
+
+[node name="LeftWall" type="CollisionShape2D" parent="BedroomGeometry" unique_id=281767220]
+position = Vector2(6, 480)
+shape = SubResource("FootLeftWall")
+
+[node name="RightWall" type="CollisionShape2D" parent="BedroomGeometry" unique_id=1757120897]
+position = Vector2(1274, 480)
+shape = SubResource("FootRightWall")
+
+[node name="RearWall" type="CollisionShape2D" parent="BedroomGeometry" unique_id=1030372972]
+position = Vector2(640, 200)
+shape = SubResource("FootRearWall")
+
+[connection signal="accepted_line_advanced" from="StoryLayer/DialoguePanel" to="EndingAudio" method="_on_accepted_advance"]
+[connection signal="transition_started" from="RealityPresentation" to="TransitionAudio" method="_on_transition_started"]
+
+[editable path="Player"]

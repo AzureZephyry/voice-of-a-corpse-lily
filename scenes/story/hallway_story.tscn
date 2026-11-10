@@ -1,0 +1,282 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hallway_normal_playable.tscn" id="base"]
+[ext_resource type="Script" path="res://scripts/hallway_story.gd" id="host"]
+[ext_resource type="Script" path="res://scripts/hallway_story_player.gd" id="player"]
+[ext_resource type="Script" path="res://scripts/hallway_narrative.gd" id="narrative"]
+[ext_resource type="PackedScene" path="res://scenes/UI/dialogue_panel.tscn" id="panel"]
+[ext_resource type="Script" path="res://scripts/npc_character.gd" id="npc"]
+[ext_resource type="Script" path="res://scripts/albert_animation.gd" id="animation"]
+[ext_resource type="PackedScene" path="res://scenes/components/classroom_psych_presentation.tscn" id="psych_scene"]
+[ext_resource type="Script" path="res://scripts/hallway_psych_presentation.gd" id="psych_script"]
+[ext_resource type="Shader" path="res://shaders/dialogue_intrusion.gdshader" id="intrusion"]
+[ext_resource type="Script" path="res://scripts/audio/hallway_story_audio.gd" id="audio"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/dialogue_blip.wav" id="advance"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/jules_frames.tres" id="jules"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/jules_manifested_frames.tres" id="m_jules"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/normal/liezel_frames.tres" id="liezel"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/liezel_manifested_frames.tres" id="m_liezel"]
+
+[ext_resource type="Script" path="res://scripts/hallway_friend_target.gd" id="friend_target"]
+[ext_resource type="Script" path="res://scripts/hallway_friend_interaction.gd" id="friend_interaction"]
+[ext_resource type="FontFile" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="prompt_font"]
+
+[ext_resource type="PackedScene" path="res://scenes/UI/scene02_objectives.tscn" id="objectives"]
+
+[ext_resource type="Script" path="res://scripts/hallway_lighting.gd" id="lighting"]
+[ext_resource type="Shader" path="res://shaders/hallway_time_grade.gdshader" id="grade"]
+[ext_resource type="Shader" path="res://shaders/hallway_ground_receiver.gdshader" id="ground"]
+[ext_resource type="PackedScene" path="res://scenes/environments/hallway/hallway_shadows.tscn" id="shadows"]
+[ext_resource type="PackedScene" path="res://scenes/components/actor_shadow_2d.tscn" id="actor_shadow"]
+[ext_resource type="Shader" path="res://shaders/hallway_story_railing.gdshader" id="rail_grade"]
+
+[ext_resource type="PackedScene" path="res://scenes/environments/hallway/hallway_crowd.tscn" id="crowd"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_01_manifested_frames.tres" id="crowd_m_classmate_female_01"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_male_02_manifested_frames.tres" id="crowd_m_classmate_male_02"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_03_manifested_frames.tres" id="crowd_m_classmate_female_03"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_male_01_manifested_frames.tres" id="crowd_m_classmate_male_01"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/classroom/manifested/classmate_female_02_manifested_frames.tres" id="crowd_m_classmate_female_02"]
+
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_marker.tscn" id="stair_marker"]
+
+[sub_resource type="ShaderMaterial" id="GroundReceiver"]
+resource_local_to_scene = true
+shader = ExtResource("ground")
+shader_parameter/time_weight = 1.0
+
+[sub_resource type="ShaderMaterial" id="WorldGrade"]
+resource_local_to_scene = true
+shader = ExtResource("grade")
+shader_parameter/time_weight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ActorGrade"]
+resource_local_to_scene = true
+shader = ExtResource("grade")
+shader_parameter/time_weight = 0.85
+shader_parameter/cover_depth = 0.08
+
+[sub_resource type="ShaderMaterial" id="StoryRail"]
+resource_local_to_scene = true
+shader = ExtResource("rail_grade")
+shader_parameter/time_weight = 1.0
+
+[sub_resource type="RectangleShape2D" id="Feet"]
+size = Vector2(24, 14)
+
+[sub_resource type="ShaderMaterial" id="Intrusion"]
+resource_local_to_scene = true
+shader = ExtResource("intrusion")
+
+[node name="HallwayStory" instance=ExtResource("base")]
+script = ExtResource("host")
+editor_description = "Player-controlled Hallway story segment. Approach Jules or Liezel and press E. Full Scene 02 entry is scene02_story.tscn."
+
+[node name="Background" parent="Hallway" index="0"]
+material = SubResource("GroundReceiver")
+
+[node name="Railing" parent="Hallway/Foreground" index="0"]
+material = SubResource("WorldGrade")
+
+[node name="Pillar01" parent="Hallway/Foreground" index="1"]
+material = SubResource("WorldGrade")
+
+[node name="Pillar02" parent="Hallway/Foreground" index="2"]
+material = SubResource("WorldGrade")
+
+[node name="Pillar03" parent="Hallway/Foreground" index="3"]
+material = SubResource("WorldGrade")
+
+[node name="Player" parent="." index="1"]
+position = Vector2(3557, 610)
+script = ExtResource("player")
+
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+material = SubResource("ActorGrade")
+
+[node name="ActorShadow2D" parent="Player" index="2"]
+contact_size = Vector2(32, 8)
+height_scale = 0.85
+ground_depth = 0.04
+cast_strength = 0.80
+
+[node name="RailingVisibility" parent="." index="6"]
+overlap_material = SubResource("StoryRail")
+
+[node name="TimeHUD" parent="." index="3"]
+layer = 12
+
+[node name="RealityDebug" parent="." index="8"]
+enabled = false
+
+[node name="HallwayRealityPresenter" parent="." index="5"]
+actor_paths = Array[NodePath]([NodePath("../Cast/Jules/AnimatedSprite2D"), NodePath("../Cast/Liezel/AnimatedSprite2D"), NodePath("../Crowd/Student01/AnimatedSprite2D"), NodePath("../Crowd/Student02/AnimatedSprite2D"), NodePath("../Crowd/Student03/AnimatedSprite2D"), NodePath("../Crowd/Student04/AnimatedSprite2D"), NodePath("../Crowd/Student05/AnimatedSprite2D"), NodePath("../Crowd/Student06/AnimatedSprite2D"), NodePath("../Crowd/Student07/AnimatedSprite2D"), NodePath("../Crowd/Student08/AnimatedSprite2D"), NodePath("../Crowd/Student09/AnimatedSprite2D"), NodePath("../Crowd/Student10/AnimatedSprite2D"), NodePath("../Crowd/Student11/AnimatedSprite2D"), NodePath("../Crowd/Student12/AnimatedSprite2D"), NodePath("../Crowd/Student13/AnimatedSprite2D"), NodePath("../Crowd/Student14/AnimatedSprite2D"), NodePath("../Crowd/Student15/AnimatedSprite2D"), NodePath("../Crowd/Student16/AnimatedSprite2D"), NodePath("../Crowd/Student17/AnimatedSprite2D"), NodePath("../Crowd/Student18/AnimatedSprite2D"), NodePath("../Crowd/Student19/AnimatedSprite2D"), NodePath("../Crowd/Student20/AnimatedSprite2D"), NodePath("../Crowd/Student21/AnimatedSprite2D"), NodePath("../Crowd/Student22/AnimatedSprite2D"), NodePath("../Crowd/Student23/AnimatedSprite2D"), NodePath("../Crowd/Student24/AnimatedSprite2D"), NodePath("../Crowd/Student25/AnimatedSprite2D"), NodePath("../Crowd/Student26/AnimatedSprite2D"), NodePath("../Crowd/Student27/AnimatedSprite2D"), NodePath("../Crowd/Student28/AnimatedSprite2D"), NodePath("../Crowd/Student29/AnimatedSprite2D"), NodePath("../Crowd/Student30/AnimatedSprite2D"), NodePath("../Crowd/Student31/AnimatedSprite2D"), NodePath("../Crowd/Student32/AnimatedSprite2D"), NodePath("../Crowd/Student33/AnimatedSprite2D")])
+manifested_frames = Array[SpriteFrames]([ExtResource("m_jules"), ExtResource("m_liezel"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02"), ExtResource("crowd_m_classmate_female_03"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_01"), ExtResource("crowd_m_classmate_male_01"), ExtResource("crowd_m_classmate_male_02"), ExtResource("crowd_m_classmate_female_02")])
+
+[node name="RealityGlitch" parent="." index="7"]
+reduced_motion_sources = Array[NodePath]([NodePath("../Narrative")])
+
+[node name="Cast" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Jules" type="CharacterBody2D" parent="Cast"]
+position = Vector2(3475, 495)
+script = ExtResource("npc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cast/Jules"]
+material = SubResource("ActorGrade")
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("jules")
+animation = &"idle_down_right"
+autoplay = "idle_down_right"
+offset = Vector2(0, -9)
+script = ExtResource("animation")
+
+[node name="ActorShadow2D" parent="Cast/Jules" instance=ExtResource("actor_shadow")]
+contact_size = Vector2(32, 8)
+height_scale = 0.85
+ground_depth = 0.04
+cast_strength = 0.80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cast/Jules"]
+position = Vector2(0, -7)
+shape = SubResource("Feet")
+
+[node name="Liezel" type="CharacterBody2D" parent="Cast"]
+position = Vector2(3650, 495)
+script = ExtResource("npc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cast/Liezel"]
+material = SubResource("ActorGrade")
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("liezel")
+animation = &"idle_down_right"
+autoplay = "idle_down_right"
+offset = Vector2(0, -9)
+script = ExtResource("animation")
+flip_h = true
+
+[node name="ActorShadow2D" parent="Cast/Liezel" instance=ExtResource("actor_shadow")]
+contact_size = Vector2(32, 8)
+height_scale = 0.85
+ground_depth = 0.04
+cast_strength = 0.80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cast/Liezel"]
+position = Vector2(0, -7)
+shape = SubResource("Feet")
+
+
+[node name="StoryLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DialoguePanel" parent="StoryLayer" instance=ExtResource("panel")]
+visible = false
+
+[node name="Completion" type="Label" parent="StoryLayer"]
+visible = false
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 650.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 24
+text = "Hallway segment complete — next location pending"
+mouse_filter = 2
+
+[node name="InteractionPrompt" type="Label" parent="StoryLayer" groups=["time_hud_obstacles"]]
+visible = false
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.95, 0.87, 0.65, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("prompt_font")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="JulesTarget" type="Node2D" parent="Cast/Jules"]
+script = ExtResource("friend_target")
+radius = 132.0
+display_name = "Jules"
+visual_bounds = Rect2(-45, -100, 90, 100)
+
+[node name="LiezelTarget" type="Node2D" parent="Cast/Liezel"]
+script = ExtResource("friend_target")
+radius = 132.0
+display_name = "Liezel"
+visual_bounds = Rect2(-45, -100, 90, 100)
+
+[node name="FriendInteraction" type="Node" parent="."]
+script = ExtResource("friend_interaction")
+target_paths = Array[NodePath]([NodePath("../Cast/Jules/JulesTarget"), NodePath("../Cast/Liezel/LiezelTarget")])
+
+[node name="Crowd" parent="." instance=ExtResource("crowd")]
+
+[node name="HallwayLighting" type="Node" parent="."]
+script = ExtResource("lighting")
+additional_actor_roots = Array[NodePath]([NodePath("../Crowd")])
+visual_paths = Array[NodePath]([NodePath("../Hallway/Background"), NodePath("../Hallway/Foreground/Pillar01"), NodePath("../Player/AnimatedSprite2D"), NodePath("../Cast/Jules/AnimatedSprite2D")])
+
+[node name="HallwayShadows" parent="." instance=ExtResource("shadows")]
+
+[node name="GameplayUI" parent="." instance=ExtResource("objectives")]
+
+[node name="Narrative" type="Node" parent="."]
+process_physics_priority = 15
+script = ExtResource("narrative")
+panel_path = NodePath("../StoryLayer/DialoguePanel")
+player_path = NodePath("../Player")
+intrusion_material = SubResource("Intrusion")
+
+[node name="StoryAudio" type="Node" parent="."]
+script = ExtResource("audio")
+
+[node name="Advance" type="AudioStreamPlayer" parent="StoryAudio"]
+stream = ExtResource("advance")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="PsychPresentation" parent="." instance=ExtResource("psych_scene")]
+script = ExtResource("psych_script")
+entry_pixels = 12.0
+return_pixels = 8.0
+protected_actor_paths = Array[NodePath]([NodePath("../Player/AnimatedSprite2D"), NodePath("../Cast/Jules/AnimatedSprite2D"), NodePath("../Cast/Liezel/AnimatedSprite2D")])
+protected_control_paths = Array[NodePath]([NodePath("../TimeHUD/Screen/Frame"), NodePath("../GameplayUI/Objective"), NodePath("../StoryLayer/InteractionPrompt")])
+
+[node name="Echo01" parent="PsychPresentation/Echoes" index="0"]
+offset_left = 80.0
+offset_top = 170.0
+offset_right = 440.0
+offset_bottom = 320.0
+
+[node name="Echo02" parent="PsychPresentation/Echoes" index="1"]
+offset_left = 480.0
+offset_top = 230.0
+offset_right = 840.0
+offset_bottom = 380.0
+
+[node name="Echo03" parent="PsychPresentation/Echoes" index="2"]
+offset_left = 90.0
+offset_top = 440.0
+offset_right = 450.0
+offset_bottom = 590.0
+
+[node name="Echo04" parent="PsychPresentation/Echoes" index="3"]
+offset_left = 470.0
+offset_top = 460.0
+offset_right = 880.0
+offset_bottom = 610.0
+
+[node name="StairExitMarker" parent="." instance=ExtResource("stair_marker")]
+visible = false
+position = Vector2(220,350)
+scale = Vector2(2,2)
+z_index = 5
+
+[connection signal="accepted_line_advanced" from="StoryLayer/DialoguePanel" to="StoryAudio" method="_on_accepted_advance"]
+[connection signal="stage_direction" from="Narrative" to="StoryAudio" method="_on_stage_direction"]
+[connection signal="hallway_segment_completed" from="Narrative" to="." method="_on_hallway_segment_completed"]
+
+[editable path="Player"]
+[editable path="PsychPresentation"]
+
+[editable path="Hallway"]

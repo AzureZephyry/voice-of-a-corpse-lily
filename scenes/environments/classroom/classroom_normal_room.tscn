@@ -1,0 +1,812 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/classroom_normal.png" id="1_art"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground/instructor_desk.png" id="2_desk"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground/instructor_chair.png" id="3_chair"]
+[ext_resource type="Texture2D" path="res://assets/environments/classroom/foreground/wall_equipment.png" id="4_equipment"]
+
+[sub_resource type="RectangleShape2D" id="NorthWallShape"]
+size = Vector2(1208, 22)
+
+[sub_resource type="RectangleShape2D" id="WestWallShape"]
+size = Vector2(22, 622)
+
+[sub_resource type="RectangleShape2D" id="EastWallShape"]
+size = Vector2(22, 622)
+
+[sub_resource type="RectangleShape2D" id="SouthWallShape"]
+size = Vector2(1208, 22)
+
+[sub_resource type="RectangleShape2D" id="NorthCabinetLeftShape"]
+size = Vector2(226, 50)
+
+[sub_resource type="RectangleShape2D" id="NorthCabinetMiddleShape"]
+size = Vector2(228, 50)
+
+[sub_resource type="RectangleShape2D" id="NorthCabinetRightShape"]
+size = Vector2(226, 50)
+
+[sub_resource type="RectangleShape2D" id="WestCabinetUpperShape"]
+size = Vector2(60, 170)
+
+[sub_resource type="RectangleShape2D" id="WestCabinetLowerShape"]
+size = Vector2(60, 182)
+
+[sub_resource type="RectangleShape2D" id="InstructorWorkstationShape"]
+size = Vector2(114, 326)
+
+[sub_resource type="RectangleShape2D" id="InstructorChairShape"]
+size = Vector2(68, 44)
+
+[sub_resource type="RectangleShape2D" id="FrontEquipmentShape"]
+size = Vector2(30, 298)
+
+[sub_resource type="RectangleShape2D" id="InstructorBackPostShape"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="Row1Seat1Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row1Seat2Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row1Seat3Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row2Seat1Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row2Seat2Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row2Seat3Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row3Seat1Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row3Seat2Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row3Seat3Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row4Seat1Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row4Seat2Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="Row4Seat3Shape"]
+size = Vector2(80, 42)
+
+[sub_resource type="RectangleShape2D" id="ChairBackrest"]
+size = Vector2(16, 126)
+
+[sub_resource type="RectangleShape2D" id="UpperChairBackFootprint"]
+size = Vector2(16, 82)
+
+[sub_resource type="RectangleShape2D" id="ChairSeatBody"]
+size = Vector2(62, 16)
+
+[node name="ClassroomNormalRoom" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Presentation" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Normal" type="Node2D" parent="Presentation"]
+y_sort_enabled = true
+editor_description = "Only the normal artwork exists. Geometry and seat anchors are independent siblings of Presentation."
+
+[node name="Matte" type="Polygon2D" parent="Presentation/Normal"]
+z_index = -20
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 960, 0, 960)
+
+[node name="Artwork" type="Sprite2D" parent="Presentation/Normal"]
+z_index = -10
+texture_filter = 1
+texture = ExtResource("1_art")
+centered = false
+
+[node name="FurnitureDepth" type="Node2D" parent="Presentation/Normal"]
+y_sort_enabled = true
+editor_description = "Unchanged pixels sampled from the original composite. Ground-contact Y sorts these silhouettes with Albert."
+
+[node name="Row1Seat1" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(708, 552)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(708, 426, 724, 426, 724, 552, 708, 552)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(708, 490, 788, 490, 788, 524, 708, 524)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(768, 524, 784, 524, 784, 552, 768, 552)
+
+[node name="Row1Seat2" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(708, 678)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(708, 552, 724, 552, 724, 678, 708, 678)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(708, 616, 788, 616, 788, 650, 708, 650)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(768, 650, 784, 650, 784, 678, 768, 678)
+
+[node name="Row1Seat3" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(708, 806)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(708, 680, 724, 680, 724, 806, 708, 806)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(708, 744, 788, 744, 788, 778, 708, 778)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row1Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(768, 778, 784, 778, 784, 806, 768, 806)
+
+[node name="Row2Seat1" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(544, 550)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(544, 424, 560, 424, 560, 550, 544, 550)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(544, 488, 624, 488, 624, 522, 544, 522)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(604, 522, 620, 522, 620, 550, 604, 550)
+
+[node name="Row2Seat2" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(544, 678)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(544, 552, 560, 552, 560, 678, 544, 678)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(544, 616, 624, 616, 624, 650, 544, 650)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(604, 650, 620, 650, 620, 678, 604, 678)
+
+[node name="Row2Seat3" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(544, 806)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(544, 680, 560, 680, 560, 806, 544, 806)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(544, 744, 624, 744, 624, 778, 544, 778)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row2Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(604, 778, 620, 778, 620, 806, 604, 806)
+
+[node name="Row3Seat1" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(381, 552)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(381, 426, 397, 426, 397, 552, 381, 552)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(381, 490, 461, 490, 461, 524, 381, 524)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(441, 524, 457, 524, 457, 552, 441, 552)
+
+[node name="Row3Seat2" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(381, 680)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(381, 554, 397, 554, 397, 680, 381, 680)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(381, 618, 461, 618, 461, 652, 381, 652)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(441, 652, 457, 652, 457, 680, 441, 680)
+
+[node name="Row3Seat3" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(381, 808)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(381, 682, 397, 682, 397, 808, 381, 808)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(381, 746, 461, 746, 461, 780, 381, 780)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row3Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(441, 780, 457, 780, 457, 808, 441, 808)
+
+[node name="Row4Seat1" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(217, 552)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(217, 426, 233, 426, 233, 552, 217, 552)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(217, 490, 297, 490, 297, 524, 217, 524)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat1"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(277, 524, 293, 524, 293, 552, 277, 552)
+
+[node name="Row4Seat2" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(217, 680)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(217, 554, 233, 554, 233, 680, 217, 680)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(217, 618, 297, 618, 297, 652, 217, 652)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat2"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(277, 652, 293, 652, 293, 680, 277, 680)
+
+[node name="Row4Seat3" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(217, 808)
+
+[node name="Backrest" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -126, 16, -126, 16, 0, 0, 0)
+uv = PackedVector2Array(217, 682, 233, 682, 233, 808, 217, 808)
+
+[node name="WritingArm" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -62, 80, -62, 80, -28, 0, -28)
+uv = PackedVector2Array(217, 746, 297, 746, 297, 780, 217, 780)
+
+[node name="FrontLeg" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/Row4Seat3"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(60, -28, 76, -28, 76, 0, 60, 0)
+uv = PackedVector2Array(277, 780, 293, 780, 293, 808, 277, 808)
+
+[node name="NorthCabinetLeft" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(118, 418)
+
+[node name="OriginalPixels" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/NorthCabinetLeft"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -136, 226, -136, 226, 0, 0, 0)
+uv = PackedVector2Array(118, 282, 344, 282, 344, 418, 118, 418)
+
+[node name="NorthCabinetMiddle" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(356, 418)
+
+[node name="OriginalPixels" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/NorthCabinetMiddle"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -136, 228, -136, 228, 0, 0, 0)
+uv = PackedVector2Array(356, 282, 584, 282, 584, 418, 356, 418)
+
+[node name="NorthCabinetRight" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(700, 418)
+
+[node name="OriginalPixels" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/NorthCabinetRight"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -136, 226, -136, 226, 0, 0, 0)
+uv = PackedVector2Array(700, 282, 926, 282, 926, 418, 700, 418)
+
+[node name="WestCabinetUpper" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(36, 498)
+
+[node name="OriginalPixels" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/WestCabinetUpper"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -322, 60, -322, 60, 0, 0, 0)
+uv = PackedVector2Array(36, 176, 96, 176, 96, 498, 36, 498)
+
+[node name="WestCabinetLower" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(36, 934)
+
+[node name="OriginalPixels" type="Polygon2D" parent="Presentation/Normal/FurnitureDepth/WestCabinetLower"]
+texture_filter = 1
+texture = ExtResource("1_art")
+polygon = PackedVector2Array(0, -322, 60, -322, 60, 0, 0, 0)
+uv = PackedVector2Array(36, 612, 96, 612, 96, 934, 36, 934)
+
+[node name="InstructorWorkstation" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(988, 790)
+
+[node name="FurnitureOnly" type="Sprite2D" parent="Presentation/Normal/FurnitureDepth/InstructorWorkstation"]
+texture_filter = 1
+position = Vector2(0, -326)
+texture = ExtResource("2_desk")
+centered = false
+
+[node name="InstructorChair" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+position = Vector2(1120, 678)
+
+[node name="FurnitureOnly" type="Sprite2D" parent="Presentation/Normal/FurnitureDepth/InstructorChair"]
+texture_filter = 1
+position = Vector2(-1, -141)
+texture = ExtResource("3_chair")
+centered = false
+
+[node name="FrontEquipment" type="Node2D" parent="Presentation/Normal/FurnitureDepth"]
+z_index = -5
+position = Vector2(1206, 680)
+editor_description = "Wall-mounted equipment stays behind actors; its base alone blocks floor movement."
+
+[node name="FurnitureOnly" type="Sprite2D" parent="Presentation/Normal/FurnitureDepth/FrontEquipment"]
+texture_filter = 1
+position = Vector2(1, -298)
+texture = ExtResource("4_equipment")
+centered = false
+
+[node name="Geometry" type="Node2D" parent="."]
+editor_description = "Static floor-contact footprints traced from the normal artwork; independent of visual state. Revalidate against Wayne's future manifested art."
+
+[node name="NorthWall" type="StaticBody2D" parent="Geometry"]
+position = Vector2(638, 321)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/NorthWall"]
+shape = SubResource("NorthWallShape")
+
+[node name="WestWall" type="StaticBody2D" parent="Geometry"]
+position = Vector2(25, 633)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/WestWall"]
+shape = SubResource("WestWallShape")
+
+[node name="EastWall" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1235, 633)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/EastWall"]
+shape = SubResource("EastWallShape")
+
+[node name="SouthWall" type="StaticBody2D" parent="Geometry"]
+position = Vector2(638, 951)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/SouthWall"]
+shape = SubResource("SouthWallShape")
+
+[node name="NorthCabinetLeft" type="StaticBody2D" parent="Geometry"]
+position = Vector2(231, 393)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/NorthCabinetLeft"]
+shape = SubResource("NorthCabinetLeftShape")
+
+[node name="NorthCabinetMiddle" type="StaticBody2D" parent="Geometry"]
+position = Vector2(470, 393)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/NorthCabinetMiddle"]
+shape = SubResource("NorthCabinetMiddleShape")
+
+[node name="NorthCabinetRight" type="StaticBody2D" parent="Geometry"]
+position = Vector2(813, 393)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/NorthCabinetRight"]
+shape = SubResource("NorthCabinetRightShape")
+
+[node name="WestCabinetUpper" type="StaticBody2D" parent="Geometry"]
+position = Vector2(66, 413)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/WestCabinetUpper"]
+shape = SubResource("WestCabinetUpperShape")
+
+[node name="WestCabinetLower" type="StaticBody2D" parent="Geometry"]
+position = Vector2(66, 843)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/WestCabinetLower"]
+shape = SubResource("WestCabinetLowerShape")
+
+[node name="InstructorWorkstation" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1045, 627)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/InstructorWorkstation"]
+shape = SubResource("InstructorWorkstationShape")
+
+[node name="InstructorChair" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1154, 656)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/InstructorChair"]
+shape = SubResource("InstructorChairShape")
+
+[node name="BackPost" type="CollisionShape2D" parent="Geometry/InstructorChair"]
+position = Vector2(28, -34)
+shape = SubResource("InstructorBackPostShape")
+
+[node name="FrontEquipment" type="StaticBody2D" parent="Geometry"]
+position = Vector2(1221, 531)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/FrontEquipment"]
+shape = SubResource("FrontEquipmentShape")
+
+[node name="Row1Seat1" type="StaticBody2D" parent="Geometry"]
+position = Vector2(748, 537)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row1Seat1"]
+position = Vector2(0, -6)
+shape = SubResource("Row1Seat1Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row1Seat1"]
+position = Vector2(-32, -26)
+shape = SubResource("UpperChairBackFootprint")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row1Seat1"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row1Seat2" type="StaticBody2D" parent="Geometry"]
+position = Vector2(748, 663)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row1Seat2"]
+position = Vector2(0, -6)
+shape = SubResource("Row1Seat2Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row1Seat2"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row1Seat2"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row1Seat3" type="StaticBody2D" parent="Geometry"]
+position = Vector2(748, 791)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row1Seat3"]
+position = Vector2(0, -6)
+shape = SubResource("Row1Seat3Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row1Seat3"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row1Seat3"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row2Seat1" type="StaticBody2D" parent="Geometry"]
+position = Vector2(584, 535)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row2Seat1"]
+position = Vector2(0, -6)
+shape = SubResource("Row2Seat1Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row2Seat1"]
+position = Vector2(-32, -26)
+shape = SubResource("UpperChairBackFootprint")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row2Seat1"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row2Seat2" type="StaticBody2D" parent="Geometry"]
+position = Vector2(584, 663)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row2Seat2"]
+position = Vector2(0, -6)
+shape = SubResource("Row2Seat2Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row2Seat2"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row2Seat2"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row2Seat3" type="StaticBody2D" parent="Geometry"]
+position = Vector2(584, 791)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row2Seat3"]
+position = Vector2(0, -6)
+shape = SubResource("Row2Seat3Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row2Seat3"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row2Seat3"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row3Seat1" type="StaticBody2D" parent="Geometry"]
+position = Vector2(421, 537)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row3Seat1"]
+position = Vector2(0, -6)
+shape = SubResource("Row3Seat1Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row3Seat1"]
+position = Vector2(-32, -26)
+shape = SubResource("UpperChairBackFootprint")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row3Seat1"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row3Seat2" type="StaticBody2D" parent="Geometry"]
+position = Vector2(421, 665)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row3Seat2"]
+position = Vector2(0, -6)
+shape = SubResource("Row3Seat2Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row3Seat2"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row3Seat2"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row3Seat3" type="StaticBody2D" parent="Geometry"]
+position = Vector2(421, 793)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row3Seat3"]
+position = Vector2(0, -6)
+shape = SubResource("Row3Seat3Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row3Seat3"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row3Seat3"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row4Seat1" type="StaticBody2D" parent="Geometry"]
+position = Vector2(257, 537)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row4Seat1"]
+position = Vector2(0, -6)
+shape = SubResource("Row4Seat1Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row4Seat1"]
+position = Vector2(-32, -26)
+shape = SubResource("UpperChairBackFootprint")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row4Seat1"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row4Seat2" type="StaticBody2D" parent="Geometry"]
+position = Vector2(257, 665)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row4Seat2"]
+position = Vector2(0, -6)
+shape = SubResource("Row4Seat2Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row4Seat2"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row4Seat2"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="Row4Seat3" type="StaticBody2D" parent="Geometry"]
+position = Vector2(257, 793)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Footprint" type="CollisionShape2D" parent="Geometry/Row4Seat3"]
+position = Vector2(0, -6)
+shape = SubResource("Row4Seat3Shape")
+
+[node name="Backrest" type="CollisionShape2D" parent="Geometry/Row4Seat3"]
+position = Vector2(-32, -48)
+shape = SubResource("ChairBackrest")
+
+[node name="SeatBody" type="CollisionShape2D" parent="Geometry/Row4Seat3"]
+position = Vector2(7, -59)
+shape = SubResource("ChairSeatBody")
+
+[node name="SeatAnchors" type="Node2D" parent="."]
+editor_description = "Row 1 is nearest the instructor on the right. Seats 1, 2, 3 are top, middle, bottom. Markers only; no NPCs."
+
+[node name="Row1Seat1" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(754, 502)
+metadata/provisional_occupant = "Vacant"
+
+[node name="Row1Seat2" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(754, 628)
+metadata/provisional_occupant = "Albert"
+
+[node name="Row1Seat3" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(754, 756)
+metadata/provisional_occupant = "Jules"
+
+[node name="Row2Seat1" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(590, 500)
+metadata/provisional_occupant = "Liezel"
+
+[node name="Row2Seat2" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(590, 628)
+metadata/provisional_occupant = "Classmate"
+
+[node name="Row2Seat3" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(590, 756)
+metadata/provisional_occupant = "Classmate"
+
+[node name="Row3Seat1" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(427, 502)
+metadata/provisional_occupant = "Vacant"
+
+[node name="Row3Seat2" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(427, 630)
+metadata/provisional_occupant = "Classmate"
+
+[node name="Row3Seat3" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(427, 758)
+metadata/provisional_occupant = "Classmate"
+
+[node name="Row4Seat1" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(263, 502)
+metadata/provisional_occupant = "Classmate"
+
+[node name="Row4Seat2" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(263, 630)
+metadata/provisional_occupant = "Vacant"
+
+[node name="Row4Seat3" type="Marker2D" parent="SeatAnchors"]
+position = Vector2(263, 758)
+metadata/provisional_occupant = "Vacant"
+
+[node name="InstructorApproach" type="Marker2D" parent="."]
+position = Vector2(970, 628)
+
+
+[node name="InstructorSeatAnchor" type="Marker2D" parent="."]
+position = Vector2(1154, 620)
+editor_description = "Future seating anchor only. Reach from north; no NPC or sitting animation implemented."
+
+[node name="InstructorStandingApproach" type="Marker2D" parent="."]
+position = Vector2(1122, 572)
+editor_description = "Accessible floor beside the instructor chair, for future interaction review only."

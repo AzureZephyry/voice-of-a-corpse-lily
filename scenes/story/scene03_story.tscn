@@ -1,0 +1,120 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/scene03_exterior_foundation.tscn" id="base"]
+[ext_resource type="Script" path="res://scripts/scene03_story.gd" id="host"]
+[ext_resource type="Script" path="res://scripts/scene03_player.gd" id="story_player"]
+[ext_resource type="Script" path="res://scripts/scene03_narrative.gd" id="narrative"]
+[ext_resource type="Script" path="res://scripts/scene03_audio.gd" id="audio"]
+[ext_resource type="Script" path="res://scripts/scene03_road_effects.gd" id="effects"]
+[ext_resource type="PackedScene" path="res://scenes/UI/dialogue_panel.tscn" id="panel"]
+[ext_resource type="Shader" path="res://shaders/dialogue_intrusion.gdshader" id="intrusion"]
+[ext_resource type="Shader" path="res://shaders/scene03_vignette.gdshader" id="vignette"]
+[ext_resource type="Script" path="res://scripts/intrusive_echo_fragment.gd" id="echo"]
+[ext_resource type="FontFile" path="res://assets/fonts/Pixel handwriting_regular.ttf" id="font"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/dialogue_blip.wav" id="advance"]
+[ext_resource type="PackedScene" path="res://scenes/characters/scene03_ambient_students.tscn" id="crowd"]
+[ext_resource type="PackedScene" path="res://scenes/UI/objective_marker.tscn" id="guard_marker"]
+[sub_resource type="ShaderMaterial" id="Intrusion"]
+resource_local_to_scene = true
+shader = ExtResource("intrusion")
+[sub_resource type="ShaderMaterial" id="Vignette"]
+resource_local_to_scene = true
+shader = ExtResource("vignette")
+[sub_resource type="AudioEffectLowPassFilter" id="Clarity"]
+resource_local_to_scene = true
+cutoff_hz = 20000.0
+resonance = 0.5
+[sub_resource type="FontVariation" id="Distressed"]
+base_font = ExtResource("font")
+spacing_top = -52
+spacing_bottom = -32
+variation_embolden = 0.25
+
+[sub_resource type="RectangleShape2D" id="GateExitShape"]
+size = Vector2(1660,180)
+
+[node name="Scene03Story" instance=ExtResource("base")]
+script = ExtResource("host")
+development_tools_enabled = false
+development_exploration = false
+
+[node name="Player" parent="."]
+script = ExtResource("story_player")
+
+[node name="Narrative" type="Node" parent="."]
+script = ExtResource("narrative")
+player_path = NodePath("../Player")
+intrusion_material = SubResource("Intrusion")
+
+[node name="StoryLayer" type="CanvasLayer" parent="."]
+layer = 10
+[node name="DialoguePanel" parent="StoryLayer" instance=ExtResource("panel")]
+visible = false
+[node name="RoadVignette" type="CanvasLayer" parent="."]
+layer = 1
+[node name="Edges" type="ColorRect" parent="RoadVignette"]
+material = SubResource("Vignette")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EchoLayer" type="CanvasLayer" parent="."]
+layer = 6
+[node name="Echoes" type="Control" parent="EchoLayer"]
+mouse_filter = 2
+[node name="Echo1" type="Control" parent="EchoLayer/Echoes"]
+visible = false
+offset_left = 80.0
+offset_top = 205.0
+offset_right = 440.0
+offset_bottom = 355.0
+mouse_filter = 2
+modulate = Color(0.62,0.17,0.23,0.46)
+script = ExtResource("echo")
+font = SubResource("Distressed")
+heavier_font = SubResource("Distressed")
+[node name="Echo2" type="Control" parent="EchoLayer/Echoes"]
+visible = false
+offset_left = 820.0
+offset_top = 205.0
+offset_right = 1180.0
+offset_bottom = 355.0
+mouse_filter = 2
+modulate = Color(0.62,0.17,0.23,0.46)
+script = ExtResource("echo")
+font = SubResource("Distressed")
+heavier_font = SubResource("Distressed")
+
+[node name="RoadEffects" type="Node" parent="."]
+script = ExtResource("effects")
+[node name="ExteriorAudio" parent="."]
+script = ExtResource("audio")
+clarity_filter = SubResource("Clarity")
+[node name="Advance" type="AudioStreamPlayer" parent="ExteriorAudio"]
+stream = ExtResource("advance")
+volume_db = -4.0
+bus = &"SFX"
+[connection signal="accepted_line_advanced" from="StoryLayer/DialoguePanel" to="ExteriorAudio" method="_on_accepted_advance"]
+
+[node name="Prompt" parent="FoundationUI"]
+texture_filter = 1
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 40
+theme_override_constants/line_spacing = -64
+theme_override_colors/font_color = Color(0.95,0.87,0.65,1)
+horizontal_alignment = 1
+
+[node name="GateExit" type="Area2D" parent="."]
+position = Vector2(835,1580)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GateExit"]
+shape = SubResource("GateExitShape")
+
+[node name="AmbientStudents" parent="." instance=ExtResource("crowd")]
+
+[node name="GuardMarker" parent="." instance=ExtResource("guard_marker")]
+scale = Vector2(1.5,1.5)

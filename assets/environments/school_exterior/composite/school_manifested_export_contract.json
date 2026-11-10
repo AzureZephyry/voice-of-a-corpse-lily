@@ -1,0 +1,13 @@
+{
+  "source_sha256": "c6b0135fbcb44f4822f07d16c455434195650db68a290d7592a7488c211b03b7",
+  "composite_sha256": "9d40d56bbc690d9735e3adcbe93b84901e2c92c756845c154bfc2c1f07eb6ea3",
+  "method": "embedded saved composite; not a fresh Krita export",
+  "board_bbox": [
+    455,
+    1006,
+    507,
+    1052
+  ],
+  "board_alpha": "original 8-bit KRA layer18 LZF tiles, planar alpha",
+  "other_depth": "existing shared architectural occlusion geometry; added corruption depth needs artist review"
+}

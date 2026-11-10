@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cn2pctstybmlh"]
+
+[ext_resource type="PackedScene" path="res://scenes/story/hallway_story.tscn" id="hallway"]
+[ext_resource type="Script" uid="uid://cvp3xavlebxds" path="res://scripts/scene02_story.gd" id="host"]
+
+[node name="Scene02Story" type="Node2D" unique_id=728213192]
+editor_description = "Complete standalone Scene 02, Hallway → Exterior silent beat. F6. No Classroom handoff or Scene 03 story. Missing bench and dedicated cues remain production dependencies."
+script = ExtResource("host")
+
+[node name="Location" type="Node2D" parent="." unique_id=585649222]
+
+[node name="HallwayStory" parent="Location" unique_id=2051035733 instance=ExtResource("hallway")]
+
+[node name="LocationCover" type="CanvasLayer" parent="." unique_id=1704588528]
+layer = 20
+
+[node name="Cover" type="ColorRect" parent="LocationCover" unique_id=463259730]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
